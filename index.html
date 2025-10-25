@@ -28,45 +28,42 @@
         }
 
         nav {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 25px 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    position: relative;
-}
-
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
 
         .logo {
-    font-size: 48px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #000;
-    padding-bottom: 20px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #e0e0e0;
-    position: relative;
-    text-align: center;
-    width: 100%;
-}
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #000;
+            padding-bottom: 20px;
+            margin-bottom: 15px;
+            position: relative;
+            text-align: center;
+            width: 100%;
+        }
 
-/* Linea che si estende fino ai bordi */
-.logo::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;  /* tutta la larghezza della finestra */
-    height: 1px;
-    background: #e0e0e0;
-    margin-left: -50vw;  /* centra perfettamente */
-}
-
+        /* Linea che si estende fino ai bordi */
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 1px;
+            background: #e0e0e0;
+            margin-left: -50vw;
+        }
 
         .nav-links {
             display: flex;
@@ -90,8 +87,8 @@
 
         /* Slideshow */
         .slideshow-container {
-            margin-top: 80px;
-            height: calc(100vh - 80px - 120px);
+            margin-top: 140px;
+            height: calc(100vh - 140px - 120px);
             position: relative;
             overflow: hidden;
         }
@@ -230,7 +227,8 @@
             }
 
             .slideshow-container {
-                height: calc(100vh - 70px - 100px);
+                margin-top: 120px;
+                height: calc(100vh - 120px - 100px);
             }
 
             .slide-controls {
@@ -261,9 +259,9 @@
         <nav>
             <div class="logo">Gianluca Biasatti</div>
             <ul class="nav-links">
-                <li><a href="#home">Main</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
         </nav>
     </header>
@@ -338,15 +336,12 @@
         let autoSlideInterval;
 
         function showSlide(index) {
-            // Reset all
             slides.forEach(slide => slide.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
 
-            // Wrap around
             if (index >= totalSlides) currentIndex = 0;
             if (index < 0) currentIndex = totalSlides - 1;
 
-            // Show current
             slides[currentIndex].classList.add('active');
             dots[currentIndex].classList.add('active');
             document.getElementById('current').textContent = currentIndex + 1;
@@ -374,10 +369,8 @@
             autoSlideInterval = setInterval(autoSlide, 10000);
         }
 
-        // Start auto-slide
         autoSlideInterval = setInterval(autoSlide, 10000);
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') changeSlide(-1);
             if (e.key === 'ArrowRight') changeSlide(1);

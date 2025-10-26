@@ -117,12 +117,14 @@
         }
 
         .album-card {
-            display: block;
+            display: flex;
+            flex-direction: column;
             text-decoration: none;
             color: #000;
             border: 1px solid #e0e0e0;
             transition: transform 0.4s ease, box-shadow 0.3s;
             background: #fff;
+            aspect-ratio: 1/1; /* Card quadrata perfetta */
         }
 
         .album-card:hover {
@@ -133,7 +135,7 @@
         .album-image-container {
             position: relative;
             width: 100%;
-            aspect-ratio: 1/1;
+            height: 85%; /* 85% dell'altezza totale (8,5cm su 10cm) */
             overflow: hidden;
             background: #f5f5f5;
         }
@@ -150,12 +152,15 @@
         }
 
         .album-title {
+            height: 15%; /* 15% dell'altezza totale (1,5cm su 10cm) */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             font-size: 16px;
             font-weight: 300;
             letter-spacing: 2px;
             color: #000;
-            padding: 25px 20px;
             transition: opacity 0.3s;
         }
 
@@ -230,7 +235,6 @@
 
             .album-title {
                 font-size: 14px;
-                padding: 20px 15px;
             }
         }
     </style>

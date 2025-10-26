@@ -172,7 +172,8 @@
         .lightbox-content img {
             max-width: 100%;
             max-height: 90vh;
-            object-fit: contain;
+            object-fit: contain
+            transition: opacity 0.3s ease;
         }
 
         .lightbox-close {
@@ -493,15 +494,26 @@
             document.body.style.overflow = '';
         }
 
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % photoItems.length;
-            openLightbox();
-        }
+function nextImage() {
+    lightboxImg.style.opacity = '0';
+    setTimeout(() => {
+        currentImageIndex = (currentImageIndex + 1) % photoItems.length;
+        const imgSrc = photoItems[currentImageIndex].querySelector('img').src;
+        lightboxImg.src = imgSrc;
+        lightboxImg.style.opacity = '1';
+    }, 300);
+}
 
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + photoItems.length) % photoItems.length;
-            openLightbox();
-        }
+function prevImage() {
+    lightboxImg.style.opacity = '0';
+    setTimeout(() => {
+        currentImageIndex = (currentImageIndex - 1 + photoItems.length) % photoItems.length;
+        const imgSrc = photoItems[currentImageIndex].querySelector('img').src;
+        lightboxImg.src = imgSrc;
+        lightboxImg.style.opacity = '1';
+    }, 300);
+}
+
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeLightbox();

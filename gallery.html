@@ -84,9 +84,19 @@
             opacity: 0.5;
         }
 
+        /* Seconda linea orizzontale subito dopo nav-links */
+        .header-second-line {
+            width: 100vw;
+            height: 1px;
+            background: #e0e0e0;
+            margin-top: 2px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
         /* Gallery */
         .gallery-container {
-            margin-top: 90px;
+            margin-top: 96px; /* aumentato per allinearsi col nuovo header */
             padding: 80px 50px 120px;
             max-width: 1600px;
             margin-left: auto;
@@ -287,6 +297,7 @@
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
+            <div class="header-second-line"></div>
         </nav>
     </header>
 
@@ -294,6 +305,7 @@
     <div class="gallery-container">
         <h1 class="page-title">Gallery</h1>
         <div class="gallery-grid">
+            <!-- Le immagini restano come nel tuo codice -->
             <div class="gallery-item" data-index="0">
                 <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Mountain landscape">
             </div>

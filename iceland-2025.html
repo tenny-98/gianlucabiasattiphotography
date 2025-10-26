@@ -97,7 +97,7 @@
             margin-right: auto;
         }
 
-        /* Album Title - iceland 2025 */
+        /* Album Title */
         .album-title {
             text-align: center;
             font-size: 20px;
@@ -116,7 +116,7 @@
             margin: 0 auto 45px;
         }
 
-        /* Photo Grid - gap ridotto */
+        /* Photo Grid */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -144,7 +144,7 @@
             filter: brightness(1);
         }
 
-        /* Lightbox (come prima) */
+        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -157,19 +157,23 @@
             align-items: center;
             justify-content: center;
         }
+
         .lightbox.active {
             display: flex;
         }
+
         .lightbox-content {
             position: relative;
             max-width: 90%;
             max-height: 90%;
         }
+
         .lightbox-content img {
             max-width: 100%;
             max-height: 90vh;
             object-fit: contain;
         }
+
         .lightbox-close {
             position: absolute;
             top: -50px;
@@ -183,9 +187,11 @@
             opacity: 0.7;
             transition: opacity 0.3s;
         }
+
         .lightbox-close:hover {
             opacity: 1;
         }
+
         .lightbox-nav {
             position: absolute;
             top: 50%;
@@ -199,17 +205,20 @@
             opacity: 0.5;
             transition: opacity 0.3s;
         }
+
         .lightbox-nav:hover {
             opacity: 1;
         }
+
         .lightbox-prev {
             left: -80px;
         }
+
         .lightbox-next {
             right: -80px;
         }
 
-        /* Footer come sempre */
+        /* Footer */
         footer {
             background: #000;
             color: #fff;
@@ -232,9 +241,11 @@
             text-transform: uppercase;
             transition: color 0.3s;
         }
+
         .social-links a:hover {
             color: #fff;
         }
+
         footer p {
             font-size: 11px;
             letter-spacing: 1px;
@@ -252,26 +263,38 @@
             nav {
                 padding: 20px 30px;
             }
+
             .nav-links {
                 gap: 25px;
             }
+
             .nav-links a {
                 font-size: 11px;
             }
+
             .album-container {
                 margin-top: 120px;
                 padding: 60px 20px 80px;
             }
+
             .album-title {
                 font-size: 16px;
             }
+
             .photo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 2px;
             }
-            .lightbox-prev { left: 10px; }
-            .lightbox-next { right: 10px; }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
         }
+
         @media (max-width: 480px) {
             .photo-grid {
                 grid-template-columns: 1fr;
@@ -295,10 +318,131 @@
 
     <!-- Album Content -->
     <div class="album-container">
-        <h1 class="album-title"><i>Iceland 2025</i></h1>
+        <h1 class="album-title">Iceland 2025</h1>
         <div class="divider-line"></div>
+        
         <div class="photo-grid">
-            <!-- ... le foto come già impostato ... -->
+            <!-- 40 foto - 4 per riga × 10 righe -->
+            <div class="photo-item" data-index="0">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Iceland 1">
+            </div>
+            <div class="photo-item" data-index="1">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Iceland 2">
+            </div>
+            <div class="photo-item" data-index="2">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Iceland 3">
+            </div>
+            <div class="photo-item" data-index="3">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="Iceland 4">
+            </div>
+            <div class="photo-item" data-index="4">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Iceland 5">
+            </div>
+            <div class="photo-item" data-index="5">
+                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&q=80" alt="Iceland 6">
+            </div>
+            <div class="photo-item" data-index="6">
+                <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80" alt="Iceland 7">
+            </div>
+            <div class="photo-item" data-index="7">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="Iceland 8">
+            </div>
+            <div class="photo-item" data-index="8">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Iceland 9">
+            </div>
+            <div class="photo-item" data-index="9">
+                <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=80" alt="Iceland 10">
+            </div>
+            <div class="photo-item" data-index="10">
+                <img src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?w=800&q=80" alt="Iceland 11">
+            </div>
+            <div class="photo-item" data-index="11">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Iceland 12">
+            </div>
+            <div class="photo-item" data-index="12">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Iceland 13">
+            </div>
+            <div class="photo-item" data-index="13">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Iceland 14">
+            </div>
+            <div class="photo-item" data-index="14">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="Iceland 15">
+            </div>
+            <div class="photo-item" data-index="15">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Iceland 16">
+            </div>
+            <div class="photo-item" data-index="16">
+                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&q=80" alt="Iceland 17">
+            </div>
+            <div class="photo-item" data-index="17">
+                <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80" alt="Iceland 18">
+            </div>
+            <div class="photo-item" data-index="18">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="Iceland 19">
+            </div>
+            <div class="photo-item" data-index="19">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Iceland 20">
+            </div>
+            <div class="photo-item" data-index="20">
+                <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=80" alt="Iceland 21">
+            </div>
+            <div class="photo-item" data-index="21">
+                <img src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?w=800&q=80" alt="Iceland 22">
+            </div>
+            <div class="photo-item" data-index="22">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Iceland 23">
+            </div>
+            <div class="photo-item" data-index="23">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Iceland 24">
+            </div>
+            <div class="photo-item" data-index="24">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Iceland 25">
+            </div>
+            <div class="photo-item" data-index="25">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="Iceland 26">
+            </div>
+            <div class="photo-item" data-index="26">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Iceland 27">
+            </div>
+            <div class="photo-item" data-index="27">
+                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&q=80" alt="Iceland 28">
+            </div>
+            <div class="photo-item" data-index="28">
+                <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80" alt="Iceland 29">
+            </div>
+            <div class="photo-item" data-index="29">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="Iceland 30">
+            </div>
+            <div class="photo-item" data-index="30">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Iceland 31">
+            </div>
+            <div class="photo-item" data-index="31">
+                <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=80" alt="Iceland 32">
+            </div>
+            <div class="photo-item" data-index="32">
+                <img src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?w=800&q=80" alt="Iceland 33">
+            </div>
+            <div class="photo-item" data-index="33">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Iceland 34">
+            </div>
+            <div class="photo-item" data-index="34">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Iceland 35">
+            </div>
+            <div class="photo-item" data-index="35">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Iceland 36">
+            </div>
+            <div class="photo-item" data-index="36">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="Iceland 37">
+            </div>
+            <div class="photo-item" data-index="37">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Iceland 38">
+            </div>
+            <div class="photo-item" data-index="38">
+                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&q=80" alt="Iceland 39">
+            </div>
+            <div class="photo-item" data-index="39">
+                <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80" alt="Iceland 40">
+            </div>
         </div>
     </div>
 
@@ -312,7 +456,61 @@
         <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
     </footer>
 
-    <!-- Lightbox ... script ... -->
-    <!-- (stessa logica precedente) -->
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevImage()">‹</button>
+            <img id="lightbox-img" src="" alt="">
+            <button class="lightbox-nav lightbox-next" onclick="nextImage()">›</button>
+        </div>
+    </div>
+
+    <script>
+        // Lightbox
+        let currentImageIndex = 0;
+        const photoItems = document.querySelectorAll('.photo-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        photoItems.forEach(item => {
+            item.addEventListener('click', function() {
+                currentImageIndex = parseInt(this.getAttribute('data-index'));
+                openLightbox();
+            });
+        });
+
+        function openLightbox() {
+            const imgSrc = photoItems[currentImageIndex].querySelector('img').src;
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % photoItems.length;
+            openLightbox();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + photoItems.length) % photoItems.length;
+            openLightbox();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) nextImage();
+            if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) prevImage();
+        });
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+    </script>
 </body>
 </html>

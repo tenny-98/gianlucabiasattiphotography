@@ -89,12 +89,11 @@
             background: #e0e0e0;
         }
 
+        /* Album Container - padding ridotto ai lati */
         .album-container {
             margin-top: 96px;
-            padding: 80px 50px 120px;
-            max-width: 1800px;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 60px 0 100px 0;
+            max-width: 100%;
         }
 
         /* Album Title */
@@ -105,7 +104,8 @@
             font-weight: 400;
             letter-spacing: 2px;
             color: #FF9430;
-            margin-bottom: 44px;
+            margin-bottom: 35px;
+            padding: 0 20px;
         }
 
         .divider-line {
@@ -113,20 +113,21 @@
             max-width: 400px;
             height: 1px;
             background: #e0e0e0;
-            margin: 0 auto 45px;
+            margin: 0 auto 40px;
         }
 
-        /* Photo Grid */
+        /* Photo Grid - arriva ai bordi, gap minimo */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
+            gap: 2px;
+            width: 100%;
         }
 
         .photo-item {
             position: relative;
             overflow: hidden;
-            aspect-ratio: 3/2;
+            aspect-ratio: 4/3;
             cursor: pointer;
             background: #f5f5f5;
         }
@@ -136,11 +137,11 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease, filter 0.3s;
-            filter: brightness(0.9);
+            filter: brightness(0.92);
         }
 
         .photo-item:hover img {
-            transform: scale(1.08);
+            transform: scale(1.05);
             filter: brightness(1);
         }
 
@@ -274,7 +275,7 @@
 
             .album-container {
                 margin-top: 120px;
-                padding: 60px 20px 80px;
+                padding: 50px 0 80px 0;
             }
 
             .album-title {
@@ -283,7 +284,7 @@
 
             .photo-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 2px;
+                gap: 1px;
             }
 
             .lightbox-prev {

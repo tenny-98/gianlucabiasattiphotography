@@ -481,17 +481,33 @@
             });
         });
 
-        function openLightbox() {
-            const imgSrc = photoItems[currentImageIndex].querySelector('img').src;
-            lightboxImg.src = imgSrc;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+       function openLightbox() {
+    const imgSrc = photoItems[currentImageIndex].querySelector('img').src;
+    lightboxImg.src = imgSrc;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // Fullscreen request
+    if (lightbox.requestFullscreen) {
+        lightbox.requestFullscreen();
+    } else if (lightbox.webkitRequestFullscreen) { // Safari
+        lightbox.webkitRequestFullscreen();
+    } else if (lightbox.msRequestFullscreen) { // IE11
+        lightbox.msRequestFullscreen();
+    }
+}
+function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    // Exit fullscreen
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else if (document.webkitFullscreenElement) {
+        document.webkitExitFullscreen();
+    } else if (document.msFullscreenElement) {
+        document.msExitFullscreen();
+    }
+}
 
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
 
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % photoItems.length;
@@ -514,4 +530,7 @@
         });
     </script>
 </body>
+    document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
 </html>

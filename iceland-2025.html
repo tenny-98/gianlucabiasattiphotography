@@ -514,6 +514,27 @@
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) closeLightbox();
         });
+
+        // Blocca tasto destro del mouse
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Blocca drag & drop delle immagini
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Blocca selezione delle immagini
+        document.querySelectorAll('img').forEach(img => {
+            img.style.userSelect = 'none';
+            img.style.webkitUserSelect = 'none';
+            img.style.mozUserSelect = 'none';
+        });
     </script>
 </body>
 </html>

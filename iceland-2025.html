@@ -328,7 +328,7 @@
                 <img src="https://res.cloudinary.com/dkrjsc0ok/image/upload/w_800,q_auto,f_auto/citta-notte_i8ojq3.jpg" alt="citta-notte">
             </div>
             <div class="photo-item" data-index="1">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Iceland 2">
+                <img src="https://res.cloudinary.com/dkrjsc0ok/image/upload/w800,q_auto,f_auto/donna-alberi_jznin4.jpg" alt="donna-alberi">
             </div>
             <div class="photo-item" data-index="2">
                 <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Iceland 3">
@@ -483,7 +483,8 @@
 
        function openLightbox() {
             const imgSrc = photoItems[currentImageIndex].querySelector('img').src;
-            lightboxImg.src = imgSrc;
+            const largeSrc = imgSrc.replace('/w_800,','/w_2000,');
+            lightboxImg.src = largeSrc;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gianluca Biasatti Photography - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+            background: #fff;
+            color: #000;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #000;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        /* Linea orizzontale DOPO il logo, a tutta larghezza */
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100vw;
+            height: 1px;
+            background: #e0e0e0;
+            transform: translateX(-50%);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            padding-top: 10px;
+            padding-bottom: 12px;
+        }
+
+        .nav-links a {
+            color: #000;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.5;
+        }
+
+        /* Seconda linea orizzontale - a tutta larghezza come la prima */
+        .header-second-line {
+            width: 100%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        /* Gallery */
+        .gallery-container {
+            margin-top: 96px;
+            padding: 80px 50px 120px;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 80px;
+            opacity: 0.8;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .album-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.4s ease, box-shadow 0.3s;
+            background: #fff;
+            aspect-ratio: 1/1; /* Card quadrata perfetta */
+        }
+
+        .album-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .album-image-container {
+            position: relative;
+            width: 100%;
+            height: 85%; /* 85% dell'altezza totale (8,5cm su 10cm) */
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .album-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .album-card:hover .album-image-container img {
+            transform: scale(1.08);
+        }
+
+        .album-title {
+            height: 15%; /* 15% dell'altezza totale (1,5cm su 10cm) */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-style: italic;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #FF9430;
+            transition: opacity 0.3s;
+        }
+
+        .album-card:hover .album-title {
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        footer p {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-links {
+                gap: 25px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .gallery-container {
+                margin-top: 120px;
+                padding: 60px 20px 80px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .album-title {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Gianluca Biasatti</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+        <div class="header-second-line"></div>
+    </header>
+
+    <!-- Gallery -->
+    <div class="gallery-container">
+        <h1 class="page-title">Portfolio</h1>
+        <div class="gallery-grid">
+           
+            <!-- Album 1 -->
+            <a href="iceland-2025.html" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Iceland 2025">
+                </div>
+                <div class="album-title">2025 Iceland</div>
+            </a>
+
+            <!-- Album 2 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Norway 2025">
+                </div>
+                <div class="album-title">2025 Norway</div>
+            </a>
+
+            <!-- Album 3 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="New Zealand 2024">
+                </div>
+                <div class="album-title">2024 New Zealand</div>
+            </a>
+
+            <!-- Album 4 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="Patagonia 2024">
+                </div>
+                <div class="album-title">2024 Patagonia</div>
+            </a>
+
+            <!-- Album 5 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Scotland 2024">
+                </div>
+                <div class="album-title">2024 Scotland</div>
+            </a>
+
+            <!-- Album 6 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&q=80" alt="Japan 2024">
+                </div>
+                <div class="album-title">2024 Japan</div>
+            </a>
+
+            <!-- Album 7 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80" alt="Canada 2023">
+                </div>
+                <div class="album-title">2023 Canada</div>
+            </a>
+
+            <!-- Album 8 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="Switzerland 2023">
+                </div>
+                <div class="album-title">2023 Switzerland</div>
+            </a>
+
+            <!-- Album 9 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Alaska 2023">
+                </div>
+                <div class="album-title">2023 Alaska</div>
+            </a>
+
+            <!-- Album 10 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=80" alt="Greenland 2023">
+                </div>
+                <div class="album-title">2023 Greenland</div>
+            </a>
+
+            <!-- Album 11 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?w=800&q=80" alt="Dolomites 2022">
+                </div>
+                <div class="album-title">2022 Dolomites</div>
+            </a>
+
+            <!-- Album 12 -->
+            <a href="#" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Lofoten 2022">
+                </div>
+                <div class="album-title">2022 Lofoten</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Email</a>
+        </div>
+        <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
+    </footer>
+</body>
+</html>

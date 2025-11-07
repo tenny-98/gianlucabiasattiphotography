@@ -122,7 +122,8 @@
             border: 1px solid #e0e0e0;
             transition: transform 0.4s ease, box-shadow 0.3s;
             background: #fff;
-            aspect-ratio: 1/1; /* Card quadrata perfetta */
+            aspect-ratio: 1/1;
+            cursor: pointer;
         }
 
         .album-card:hover {
@@ -133,7 +134,7 @@
         .album-image-container {
             position: relative;
             width: 100%;
-            height: 85%; /* 85% dell'altezza totale (8,5cm su 10cm) */
+            height: 85%;
             overflow: hidden;
             background: #f5f5f5;
         }
@@ -150,7 +151,7 @@
         }
 
         .album-title {
-            height: 15%; /* 15% dell'altezza totale (1,5cm su 10cm) */
+            height: 15%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -258,28 +259,28 @@
         <div class="gallery-grid">
            
             <!-- Album 1 -->
-            <a href="iceland-2025.html" class="album-card">
+            <div class="album-card" onclick="openYoutubeVideo('https://www.youtube.com/watch?v=r5A85HBNEbo&t=5s')">
                 <div class="album-image-container">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Iceland 2025">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Portugal 2024">
                 </div>
-                <div class="album-title">2025 Iceland</div>
-            </a>
+                <div class="album-title">2024 Portugal</div>
+            </div>
 
             <!-- Album 2 -->
-            <a href="#" class="album-card">
+            <div class="album-card" onclick="openYoutubeVideo('https://www.youtube.com/watch?v=Auo7iNWOzh0')">
                 <div class="album-image-container">
-                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Norway 2025">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Opatjia 2023">
                 </div>
-                <div class="album-title">2025 Norway</div>
-            </a>
+                <div class="album-title">2023 Opatjia</div>
+            </div>
 
             <!-- Album 3 -->
-            <a href="#" class="album-card">
+            <div class="album-card" onclick="openYoutubeVideo('https://www.youtube.com/watch?v=z5GyPeWHgNQ')">
                 <div class="album-image-container">
-                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="New Zealand 2024">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Ireland 2013">
                 </div>
-                <div class="album-title">2024 New Zealand</div>
-            </a>
+                <div class="album-title">2023 Ireland</div>
+            </div>
 
         </div>
     </div>
@@ -293,5 +294,11 @@
         </div>
         <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
     </footer>
+
+    <script>
+        function openYoutubeVideo(videoUrl) {
+            window.open(videoUrl, '_blank');
+        }
+    </script>
 </body>
 </html>

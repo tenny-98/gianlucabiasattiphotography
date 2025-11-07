@@ -12,9 +12,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-            background: #fff;
-            color: #000;
+            font-family: Georgia, serif;
+            background: #000;
+            color: #FFD700; /* oro/giallo */
             overflow-x: hidden;
         }
 
@@ -23,54 +23,54 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: #fff;
+            background: #000;
             z-index: 1000;
         }
 
-       nav {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 12px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-}
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
 
         .logo {
-    font-size: 28px;
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #000;
-    position: relative;
-    text-align: center;
-    width: 100%;
-    padding-bottom: 10px;    /* spazio sotto il nome */
-}
+            font-size: 28px;
+            font-family: Georgia, serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FFD700;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            padding-bottom: 10px;
+        }
         .logo .subtitle {
-    font-size: 20px;
-    font-weight: 300;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #000;
-    margin-top: 2px;
-}
+            font-size: 20px;
+            font-family: Georgia, serif;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #FFD700;
+            margin-top: 2px;
+        }
 
-/* Linea orizzontale DOPO il logo, a tutta larghezza */
-.logo::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 100vw;
-    height: 1px;
-    background: #e0e0e0;
-    transform: translateX(-50%);
-}
-
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100vw;
+            height: 1px;
+            background: #FFD700;
+            transform: translateX(-50%);
+        }
 
         .nav-links {
             display: flex;
@@ -81,9 +81,10 @@
         }
 
         .nav-links a {
-            color: #000;
+            color: #FFD700;
             text-decoration: none;
             font-size: 11px;
+            font-family: Georgia, serif;
             font-weight: 300;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -91,10 +92,9 @@
         }
 
         .nav-links a:hover {
-            opacity: 0.5;
+            opacity: 0.7;
         }
 
-        /* Slideshow - Full Height */
         .slideshow-container {
             margin-top: 90px;
             height: calc(100vh - 90px);
@@ -127,7 +127,6 @@
             object-fit: cover;
         }
 
-        /* Controlli - Nascosti di default, visibili solo on hover */
         .slideshow-container .slide-controls {
             opacity: 0;
             transition: opacity 0.4s ease;
@@ -137,12 +136,11 @@
             opacity: 1;
         }
 
-        /* Frecce ai lati - Stile minimalista */
         .prev-btn, .next-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 215, 0, 0.85);
             border: none;
             width: 50px;
             height: 50px;
@@ -155,12 +153,11 @@
             align-items: center;
             justify-content: center;
             z-index: 10;
-            font-weight: 200;
+            font-family: Georgia, serif;
         }
 
         .prev-btn:hover, .next-btn:hover {
-            background: #fff;
-            transform: translateY(-50%) scale(1.1);
+            background: #FFD700;
         }
 
         .prev-btn {
@@ -171,7 +168,6 @@
             right: 30px;
         }
 
-        /* Pallini (dots) - Centrati in basso */
         .slide-dots {
             position: absolute;
             bottom: 30px;
@@ -186,27 +182,28 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: #FFD700;
             cursor: pointer;
             transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid #FFD700;
         }
 
         .dot:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: #fffbe0;
         }
 
         .dot.active {
-            background: #fff;
+            background: #FFD700;
             transform: scale(1.3);
         }
 
         /* Footer */
         footer {
             background: #000;
-            color: #fff;
+            color: #FFD700;
             padding: 60px 50px;
             text-align: center;
+            font-family: Georgia, serif;
         }
 
         .social-links {
@@ -217,68 +214,58 @@
         }
 
         .social-links a {
-            color: rgba(255, 255, 255, 0.6);
+            color: #FFD700;
             font-size: 12px;
             text-decoration: none;
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: color 0.3s;
+            font-family: Georgia, serif;
         }
 
         .social-links a:hover {
-            color: #fff;
+            color: #fffbe0;
         }
 
         footer p {
             font-size: 11px;
             letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.4);
+            color: #FFD700;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             nav {
                 padding: 20px 30px;
             }
-
             .nav-links {
                 gap: 25px;
             }
-
             .nav-links a {
                 font-size: 11px;
             }
-
             .slideshow-container {
                 margin-top: 120px;
                 height: calc(100vh - 120px);
             }
-
             .prev-btn, .next-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 22px;
             }
-
             .prev-btn {
                 left: 15px;
             }
-
             .next-btn {
                 right: 15px;
             }
-
             .slide-dots {
                 bottom: 20px;
                 gap: 8px;
             }
-
             .dot {
                 width: 6px;
                 height: 6px;
             }
-
-            /* Su mobile i controlli restano visibili */
             .slideshow-container .slide-controls {
                 opacity: 1;
             }

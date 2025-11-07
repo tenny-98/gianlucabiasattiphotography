@@ -5,17 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gianluca Biasatti - Fotografo professionista specializzato in fotografia di paesaggi e natura">
     <meta name="theme-color" content="#000">
+    <meta property="og:title" content="Gianluca Biasatti Photography">
+    <meta property="og:description" content="Fotografia professionista di paesaggi e natura">
+    <meta property="og:type" content="website">
     <title>Gianluca Biasatti Photography - Home</title>
+    
     <style>
-        /* Reset e variabili CSS */
+        /* ============================================
+           VARIABILI E CONFIGURAZIONE GLOBALE
+           ============================================ */
         :root {
+            /* Colori */
             --color-primary: #FFD700;
             --color-bg: #000;
             --color-text-secondary: rgba(180, 180, 180, 0.7);
+            --color-border: rgba(255, 215, 0, 0.1);
+            --color-hover: #fffbe0;
+            
+            /* Tipografia */
+            --font-primary: Georgia, serif;
+            --font-size-base: 16px;
+            --line-height-base: 1.6;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Layout */
+            --header-height: 5.625rem; /* 90px */
+            --max-width: 1400px;
+            --border-radius: 0.25rem;
+            
+            /* Animazioni */
             --transition-smooth: 0.3s ease;
-            --header-height: 90px;
+            --transition-fast: 0.15s ease;
         }
 
+        /* ============================================
+           RESET E FONDAMENTA
+           ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -23,64 +54,56 @@
         }
 
         html {
+            font-size: var(--font-size-base);
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: Georgia, serif;
+            font-family: var(--font-primary);
             background: var(--color-bg);
             color: var(--color-primary);
+            line-height: var(--line-height-base);
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* Header e Navigazione */
+        /* ============================================
+           HEADER E NAVIGAZIONE
+           ============================================ */
         header {
             position: fixed;
             top: 0;
             width: 100%;
             background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
         }
 
         nav {
-            max-width: 1400px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 12px 30px;
+            padding: 0.75rem var(--spacing-lg);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: var(--spacing-sm);
         }
 
         .logo {
-            font-size: clamp(20px, 5vw, 28px);
-            font-family: Georgia, serif;
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
             font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 0.125rem;
             text-transform: uppercase;
-            color: var(--color-primary);
             text-align: center;
             width: 100%;
-            padding-bottom: 10px;
-        }
-
-        .logo .subtitle {
-            font-size: clamp(14px, 4vw, 20px);
-            font-family: Georgia, serif;
-            font-weight: 300;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--color-primary);
-            margin-top: 2px;
+            padding-bottom: var(--spacing-sm);
+            position: relative;
         }
 
         .logo::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -0.625rem;
             left: 50%;
             width: 100vw;
             height: 1px;
@@ -88,12 +111,19 @@
             transform: translateX(-50%);
         }
 
+        .logo .subtitle {
+            font-size: clamp(0.875rem, 4vw, 1.25rem);
+            font-weight: 300;
+            letter-spacing: 0.25rem;
+            text-transform: uppercase;
+            margin-top: 0.125rem;
+        }
+
         .nav-links {
             display: flex;
-            gap: clamp(15px, 4vw, 28px);
+            gap: clamp(0.9375rem, 4vw, 1.75rem);
             list-style: none;
-            padding-top: 10px;
-            padding-bottom: 12px;
+            padding: var(--spacing-sm) 0;
             align-items: center;
             flex-wrap: wrap;
             justify-content: center;
@@ -103,15 +133,14 @@
         .icon-link {
             color: var(--color-primary);
             text-decoration: none;
-            font-size: 11px;
-            font-family: Georgia, serif;
+            font-size: 0.6875rem;
             font-weight: 300;
-            letter-spacing: 1px;
+            letter-spacing: 0.0625rem;
             text-transform: uppercase;
             transition: opacity var(--transition-smooth);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 0.375rem;
             white-space: nowrap;
         }
 
@@ -121,25 +150,28 @@
         }
 
         .icon-link svg {
-            width: 18px;
-            height: 18px;
+            width: 1.125rem;
+            height: 1.125rem;
             fill: var(--color-primary);
             transition: fill var(--transition-smooth);
         }
 
         .icon-link:hover svg {
-            fill: #fffbe0;
+            fill: var(--color-hover);
         }
 
+        /* ============================================
+           NOTIFICHE
+           ============================================ */
         .copy-notify {
             position: fixed;
-            top: 120px;
-            right: 30px;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
             background: #222;
             color: var(--color-primary);
-            padding: 10px 16px;
-            border-radius: 4px;
-            font-size: 13px;
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
             opacity: 0;
             pointer-events: none;
             transition: opacity var(--transition-smooth);
@@ -150,7 +182,9 @@
             opacity: 0.9;
         }
 
-        /* Slideshow */
+        /* ============================================
+           SLIDESHOW PRINCIPALE
+           ============================================ */
         .slideshow-container {
             margin-top: var(--header-height);
             height: calc(100vh - var(--header-height));
@@ -183,29 +217,32 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            loading: lazy;
         }
 
-        .slideshow-container .slide-controls {
+        /* ============================================
+           CONTROLLI SLIDESHOW
+           ============================================ */
+        .slide-controls {
             opacity: 0;
-            transition: opacity var(--transition-smooth) ease;
+            transition: opacity var(--transition-smooth);
+            pointer-events: none;
         }
 
         .slideshow-container:hover .slide-controls {
             opacity: 1;
+            pointer-events: auto;
         }
 
-        .prev-btn,
-        .next-btn {
+        .slide-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 215, 0, 0.08);
             border: 1px solid rgba(255, 215, 0, 0.2);
-            width: 50px;
-            height: 50px;
+            width: 3.125rem;
+            height: 3.125rem;
             border-radius: 50%;
-            font-size: 28px;
+            font-size: 1.75rem;
             color: var(--color-primary);
             cursor: pointer;
             transition: all var(--transition-smooth);
@@ -213,40 +250,39 @@
             align-items: center;
             justify-content: center;
             z-index: 10;
-            font-family: Georgia, serif;
+            font-family: var(--font-primary);
             opacity: 0.4;
         }
 
-        .prev-btn:hover,
-        .next-btn:hover {
+        .slide-btn:hover {
             background: rgba(255, 215, 0, 0.18);
             opacity: 0.8;
         }
 
         .prev-btn {
-            left: 30px;
+            left: var(--spacing-lg);
         }
 
         .next-btn {
-            right: 30px;
+            right: var(--spacing-lg);
         }
 
         .slide-dots {
             position: absolute;
-            bottom: 30px;
+            bottom: var(--spacing-lg);
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: 0.625rem;
             z-index: 10;
             flex-wrap: wrap;
             justify-content: center;
-            padding: 0 20px;
+            padding: 0 var(--spacing-md);
         }
 
         .dot {
-            width: 8px;
-            height: 8px;
+            width: 0.5rem;
+            height: 0.5rem;
             border-radius: 50%;
             background: rgba(255, 215, 0, 0.19);
             cursor: pointer;
@@ -266,36 +302,35 @@
             transform: scale(1.25);
         }
 
-        /* Footer */
+        /* ============================================
+           FOOTER
+           ============================================ */
         footer {
             background: var(--color-bg);
-            color: var(--color-primary);
-            padding: 60px 50px;
+            padding: var(--spacing-xl) var(--spacing-lg);
             text-align: center;
-            font-family: Georgia, serif;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            border-top: 1px solid var(--color-border);
         }
 
         footer p {
-            font-size: 11px;
-            letter-spacing: 1px;
+            font-size: 0.6875rem;
+            letter-spacing: 0.0625rem;
             color: var(--color-text-secondary);
-            margin-bottom: 20px;
+            margin-bottom: var(--spacing-md);
         }
 
         .social-link {
             display: inline-block;
-            margin: 0 8px;
-            width: 32px;
-            height: 32px;
-            border: 1px solid #555555;
+            margin: 0 0.5rem;
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid #555;
             border-radius: 50%;
-            font-family: Georgia, serif;
             font-weight: bold;
-            font-size: 10px;
-            color: #555555;
+            font-size: 0.625rem;
+            color: #555;
             text-align: center;
-            line-height: 32px;
+            line-height: 2rem;
             text-decoration: none;
             opacity: 0.3;
             transition: opacity var(--transition-smooth), border-color var(--transition-smooth);
@@ -306,112 +341,110 @@
             border-color: var(--color-primary);
         }
 
-        /* Media Queries */
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
         @media (max-width: 768px) {
             :root {
-                --header-height: 120px;
+                --header-height: 7.5rem; /* 120px */
+                --spacing-lg: 1.5rem;
             }
 
             nav {
-                padding: 20px 20px;
+                padding: var(--spacing-md);
             }
 
             .nav-links {
-                gap: 15px;
-                padding-top: 12px;
-                padding-bottom: 10px;
+                gap: 0.9375rem;
+                padding: 0.75rem 0;
             }
 
             .nav-links a {
-                font-size: 10px;
+                font-size: 0.625rem;
             }
 
-            .prev-btn,
-            .next-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 22px;
+            .slide-btn {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.375rem;
             }
 
             .prev-btn {
-                left: 15px;
+                left: 0.9375rem;
             }
 
             .next-btn {
-                right: 15px;
+                right: 0.9375rem;
             }
 
             .slide-dots {
-                bottom: 20px;
-                gap: 8px;
+                bottom: 1.25rem;
+                gap: 0.5rem;
             }
 
             .dot {
-                width: 6px;
-                height: 6px;
+                width: 0.375rem;
+                height: 0.375rem;
             }
 
-            .slideshow-container .slide-controls {
+            .slideshow-container:hover .slide-controls {
                 opacity: 1;
             }
 
             .copy-notify {
-                top: 140px;
-                right: 15px;
-                left: 15px;
+                top: calc(var(--header-height) + 0.9375rem);
+                right: 0.9375rem;
+                left: 0.9375rem;
                 width: auto;
             }
 
             footer {
-                padding: 40px 20px;
-            }
-
-            footer p {
-                font-size: 10px;
+                padding: 2.5rem var(--spacing-md);
             }
         }
 
         @media (max-width: 480px) {
             .nav-links {
-                gap: 12px;
+                gap: 0.75rem;
             }
 
             .nav-links a {
-                font-size: 9px;
+                font-size: 0.5625rem;
             }
 
             .icon-link svg {
-                width: 16px;
-                height: 16px;
+                width: 1rem;
+                height: 1rem;
             }
 
-            .prev-btn,
-            .next-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 20px;
+            .slide-btn {
+                width: 2.25rem;
+                height: 2.25rem;
+                font-size: 1.25rem;
             }
 
             .prev-btn {
-                left: 10px;
+                left: 0.625rem;
             }
 
             .next-btn {
-                right: 10px;
+                right: 0.625rem;
             }
 
             .slide-dots {
-                bottom: 15px;
-                gap: 6px;
+                bottom: 0.9375rem;
+                gap: 0.375rem;
             }
 
             .dot {
-                width: 5px;
-                height: 5px;
+                width: 0.3125rem;
+                height: 0.3125rem;
             }
         }
 
-        /* Accessibility */
+        /* ============================================
+           ACCESSIBILITÀ
+           ============================================ */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -424,7 +457,9 @@
             }
         }
 
-        /* Print styles */
+        /* ============================================
+           PRINT
+           ============================================ */
         @media print {
             header,
             footer,
@@ -439,12 +474,10 @@
     </style>
 </head>
 <body>
-    <!-- Notifica copia email -->
     <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata!</div>
 
-    <!-- Header -->
     <header role="banner">
-        <nav role="navigation">
+        <nav role="navigation" aria-label="Navigazione principale">
             <div class="logo">
                 Gianluca Biasatti
                 <div class="subtitle">Photography</div>
@@ -464,7 +497,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="icon-link" id="mailIcon" href="#" title="Copia Email" aria-label="Copia indirizzo email" onclick="copyEmail(event)">
+                    <a class="icon-link" id="mailIcon" href="#" title="Copia Email" aria-label="Copia indirizzo email" onclick="handleEmailCopy(event)">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29 7H3c-1.1 0-2 0.9-2 2v14c0 1.1 0.9 2 2 2h26c1.1 0 2-0.9 2-2V9c0-1.1-0.9-2-2-2zm0 4.24-13 8.13-13-8.13V9l13 8 13-8v2.24z"/></svg>
                     </a>
                 </li>
@@ -472,7 +505,6 @@
         </nav>
     </header>
 
-    <!-- Slideshow Full Height -->
     <main class="slideshow-container" role="region" aria-label="Slideshow fotografico">
         <div class="slide active">
             <img src="https://lh3.googleusercontent.com/d/1YYmc6bVQ4X1kzQLRK_svFJS8TUik8_O8" alt="Fotografia di paesaggio - Foto principale" loading="lazy">
@@ -502,26 +534,24 @@
             <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1920&q=80" alt="Natura selvaggia" loading="lazy">
         </div>
 
-        <!-- Controlli che scompaiono -->
         <div class="slide-controls">
-            <button class="prev-btn" onclick="changeSlide(-1)" aria-label="Slide precedente">‹</button>
-            <button class="next-btn" onclick="changeSlide(1)" aria-label="Slide successiva">›</button>
+            <button class="slide-btn prev-btn" onclick="slideshow.prev()" aria-label="Slide precedente">‹</button>
+            <button class="slide-btn next-btn" onclick="slideshow.next()" aria-label="Slide successiva">›</button>
 
             <div class="slide-dots" role="tablist" aria-label="Selezione slide">
-                <span class="dot active" onclick="currentSlide(0)" role="tab" aria-selected="true" aria-label="Slide 1"></span>
-                <span class="dot" onclick="currentSlide(1)" role="tab" aria-selected="false" aria-label="Slide 2"></span>
-                <span class="dot" onclick="currentSlide(2)" role="tab" aria-selected="false" aria-label="Slide 3"></span>
-                <span class="dot" onclick="currentSlide(3)" role="tab" aria-selected="false" aria-label="Slide 4"></span>
-                <span class="dot" onclick="currentSlide(4)" role="tab" aria-selected="false" aria-label="Slide 5"></span>
-                <span class="dot" onclick="currentSlide(5)" role="tab" aria-selected="false" aria-label="Slide 6"></span>
-                <span class="dot" onclick="currentSlide(6)" role="tab" aria-selected="false" aria-label="Slide 7"></span>
-                <span class="dot" onclick="currentSlide(7)" role="tab" aria-selected="false" aria-label="Slide 8"></span>
-                <span class="dot" onclick="currentSlide(8)" role="tab" aria-selected="false" aria-label="Slide 9"></span>
+                <button class="dot active" onclick="slideshow.goTo(0)" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+                <button class="dot" onclick="slideshow.goTo(1)" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+                <button class="dot" onclick="slideshow.goTo(2)" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+                <button class="dot" onclick="slideshow.goTo(3)" role="tab" aria-selected="false" aria-label="Slide 4"></button>
+                <button class="dot" onclick="slideshow.goTo(4)" role="tab" aria-selected="false" aria-label="Slide 5"></button>
+                <button class="dot" onclick="slideshow.goTo(5)" role="tab" aria-selected="false" aria-label="Slide 6"></button>
+                <button class="dot" onclick="slideshow.goTo(6)" role="tab" aria-selected="false" aria-label="Slide 7"></button>
+                <button class="dot" onclick="slideshow.goTo(7)" role="tab" aria-selected="false" aria-label="Slide 8"></button>
+                <button class="dot" onclick="slideshow.goTo(8)" role="tab" aria-selected="false" aria-label="Slide 9"></button>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer role="contentinfo">
         <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
         <a href="https://www.linkedin.com/in/marcobiasatti/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="Profilo LinkedIn">
@@ -530,149 +560,196 @@
     </footer>
 
     <script>
-        // Configurazione
-        const config = {
+        /**
+         * CONFIGURAZIONE CENTRALIZZATA
+         */
+        const CONFIG = {
             autoSlideInterval: 10000,
-            fadeInDuration: 800
+            email: 'biasattig@libero.it',
+            notificationDuration: 1500
         };
 
-        // Stato slideshow
-        let currentIndex = 0;
-        let autoSlideTimer;
-
-        // Elementi DOM
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
-
         /**
-         * Visualizza una slide specifica
-         * @param {number} index - Indice della slide da visualizzare
+         * SLIDESHOW OBJECT - Gestione centralizzata
          */
-        function showSlide(index) {
-            // Validazione indice
-            if (index >= totalSlides) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = totalSlides - 1;
-            } else {
-                currentIndex = index;
-            }
+        const slideshow = {
+            currentIndex: 0,
+            autoTimer: null,
+            slides: [],
+            dots: [],
 
-            // Aggiorna tutte le slide
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === currentIndex);
-            });
+            /**
+             * Inizializzazione
+             */
+            init() {
+                this.slides = document.querySelectorAll('.slide');
+                this.dots = document.querySelectorAll('.dot');
+                
+                if (this.slides.length === 0) {
+                    console.error('Nessuna slide trovata');
+                    return;
+                }
 
-            // Aggiorna tutti i dot
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentIndex);
-                dot.setAttribute('aria-selected', i === currentIndex);
-            });
-        }
+                this.startAutoSlide();
+                this.bindEvents();
+            },
 
-        /**
-         * Cambia slide nella direzione specificata
-         * @param {number} direction - Direzione (-1 per precedente, 1 per successiva)
-         */
-        function changeSlide(direction) {
-            showSlide(currentIndex + direction);
-            resetAutoSlide();
-        }
+            /**
+             * Binding eventi globali
+             */
+            bindEvents() {
+                document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+                document.addEventListener('visibilitychange', () => this.handleVisibilityChange());
+            },
 
-        /**
-         * Vai a una slide specifica
-         * @param {number} index - Indice della slide
-         */
-        function currentSlide(index) {
-            showSlide(index);
-            resetAutoSlide();
-        }
+            /**
+             * Gestione navigazione tastiera
+             */
+            handleKeyboard(e) {
+                if (e.key === 'ArrowLeft') this.prev();
+                if (e.key === 'ArrowRight') this.next();
+            },
 
-        /**
-         * Avanza automaticamente alla slide successiva
-         */
-        function autoSlide() {
-            showSlide(currentIndex + 1);
-        }
+            /**
+             * Pausa/Resume in base a visibilità tab
+             */
+            handleVisibilityChange() {
+                if (document.hidden) {
+                    this.stopAutoSlide();
+                } else {
+                    this.startAutoSlide();
+                }
+            },
 
-        /**
-         * Resetta il timer di autoplay
-         */
-        function resetAutoSlide() {
-            clearInterval(autoSlideTimer);
-            autoSlideTimer = setInterval(autoSlide, config.autoSlideInterval);
-        }
+            /**
+             * Visualizza slide specifica
+             */
+            show(index) {
+                index = this.validateIndex(index);
+                this.currentIndex = index;
 
-        /**
-         * Copia email negli appunti
-         * @param {Event} event - Evento click
-         */
-        function copyEmail(event) {
-            event.preventDefault();
-            const email = "biasattig@libero.it";
-
-            // Usa Clipboard API moderna
-            navigator.clipboard.writeText(email)
-                .then(() => {
-                    showNotification();
-                })
-                .catch((err) => {
-                    // Fallback per browser più vecchi
-                    copyEmailFallback(email);
+                this.slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
                 });
+
+                this.dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                    dot.setAttribute('aria-selected', i === index);
+                });
+            },
+
+            /**
+             * Slide successiva
+             */
+            next() {
+                this.show(this.currentIndex + 1);
+                this.resetAutoSlide();
+            },
+
+            /**
+             * Slide precedente
+             */
+            prev() {
+                this.show(this.currentIndex - 1);
+                this.resetAutoSlide();
+            },
+
+            /**
+             * Vai a slide specifica
+             */
+            goTo(index) {
+                this.show(index);
+                this.resetAutoSlide();
+            },
+
+            /**
+             * Auto-advance
+             */
+            autoAdvance() {
+                this.show(this.currentIndex + 1);
+            },
+
+            /**
+             * Valida indice
+             */
+            validateIndex(index) {
+                const total = this.slides.length;
+                if (index >= total) return 0;
+                if (index < 0) return total - 1;
+                return index;
+            },
+
+            /**
+             * Avvia autoplay
+             */
+            startAutoSlide() {
+                if (this.autoTimer) return;
+                this.autoTimer = setInterval(() => this.autoAdvance(), CONFIG.autoSlideInterval);
+            },
+
+            /**
+             * Ferma autoplay
+             */
+            stopAutoSlide() {
+                clearInterval(this.autoTimer);
+                this.autoTimer = null;
+            },
+
+            /**
+             * Reset autoplay
+             */
+            resetAutoSlide() {
+                this.stopAutoSlide();
+                this.startAutoSlide();
+            }
+        };
+
+        /**
+         * UTILITY - Gestione email
+         */
+        function handleEmailCopy(e) {
+            e.preventDefault();
+            
+            navigator.clipboard.writeText(CONFIG.email)
+                .then(() => showNotification())
+                .catch(() => emailCopyFallback());
         }
 
         /**
-         * Fallback per browser che non supportano Clipboard API
-         * @param {string} email - Email da copiare
+         * Fallback per browser vecchi
          */
-        function copyEmailFallback(email) {
-            const textArea = document.createElement('textarea');
-            textArea.value = email;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-999999px';
-            document.body.appendChild(textArea);
-            textArea.select();
+        function emailCopyFallback() {
+            const textarea = document.createElement('textarea');
+            textarea.value = CONFIG.email;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-999999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
             try {
                 document.execCommand('copy');
                 showNotification();
             } catch (err) {
-                console.error('Errore nella copia:', err);
+                console.error('Errore copia email:', err);
+            } finally {
+                document.body.removeChild(textarea);
             }
-            document.body.removeChild(textArea);
         }
 
         /**
-         * Mostra notifica di conferma
+         * Mostra notifica
          */
         function showNotification() {
             const notify = document.getElementById('copyNotify');
             notify.classList.add('show');
-            setTimeout(() => notify.classList.remove('show'), 1500);
+            setTimeout(() => notify.classList.remove('show'), CONFIG.notificationDuration);
         }
 
-        // Inizializzazione
+        /**
+         * INIT - Al caricamento documento
+         */
         document.addEventListener('DOMContentLoaded', () => {
-            autoSlideTimer = setInterval(autoSlide, config.autoSlideInterval);
-        });
-
-        // Controlli tastiera
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                changeSlide(-1);
-            } else if (e.key === 'ArrowRight') {
-                changeSlide(1);
-            }
-        });
-
-        // Pausa autoplay quando si lascia il tab
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                clearInterval(autoSlideTimer);
-            } else {
-                resetAutoSlide();
-            }
+            slideshow.init();
         });
     </script>
 </body>

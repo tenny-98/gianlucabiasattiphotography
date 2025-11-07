@@ -148,31 +148,29 @@
             margin-bottom: 0;
         }
 
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 60px;
+        /* Counter di Visite */
+        .visit-counter {
             margin-top: 80px;
+            padding: 40px;
             text-align: center;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        .stat-item {
-            padding: 30px;
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 200;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
+        .counter-label {
             font-size: 13px;
             font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
             opacity: 0.7;
+            margin-bottom: 15px;
+        }
+
+        .counter-number {
+            font-size: 48px;
+            font-weight: 200;
+            letter-spacing: -1px;
+            color: #000;
         }
 
         /* Footer */
@@ -237,13 +235,12 @@
                 font-size: 16px;
             }
 
-            .about-stats {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .visit-counter {
                 margin-top: 60px;
+                padding: 30px;
             }
 
-            .stat-number {
+            .counter-number {
                 font-size: 36px;
             }
         }
@@ -287,19 +284,10 @@
                 </p>
             </div>
 
-            <div class="about-stats">
-                <div class="stat-item">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Anni Esperienza</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Paesi Visitati</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Progetti</div>
-                </div>
+            <!-- Counter di Visite -->
+            <div class="visit-counter">
+                <div class="counter-label">Visite Totali</div>
+                <div class="counter-number" id="visitCounter">0</div>
             </div>
         </div>
     </div>
@@ -313,5 +301,30 @@
         </div>
         <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Funzione per gestire il counter di visite
+        function initializeVisitCounter() {
+            // Recupera il numero di visite dal localStorage
+            let visits = localStorage.getItem('visitCounter');
+            
+            // Se non esiste, inizializza a 1
+            if (!visits) {
+                visits = 1;
+            } else {
+                // Incrementa di 1
+                visits = parseInt(visits) + 1;
+            }
+            
+            // Salva il nuovo valore
+            localStorage.setItem('visitCounter', visits);
+            
+            // Aggiorna l'elemento HTML
+            document.getElementById('visitCounter').textContent = visits;
+        }
+
+        // Esegui la funzione quando la pagina è caricata
+        window.addEventListener('load', initializeVisitCounter);
+    </script>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gianluca Biasatti Photography - About</title>
     <style>
+        /* [CSS rimane identico al precedente] */
         * {
             margin: 0;
             padding: 0;
@@ -17,7 +18,6 @@
             color: #000;
         }
 
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -50,7 +50,6 @@
             padding-bottom: 10px;
         }
 
-        /* Linea orizzontale DOPO il logo, a tutta larghezza */
         .logo::after {
             content: '';
             position: absolute;
@@ -84,14 +83,12 @@
             opacity: 0.5;
         }
 
-        /* Seconda linea orizzontale - a tutta larghezza come la prima */
         .header-second-line {
             width: 100%;
             height: 1px;
             background: #e0e0e0;
         }
 
-        /* About Content */
         .about-container {
             margin-top: 96px;
             padding: 80px 50px 120px;
@@ -148,7 +145,6 @@
             margin-bottom: 0;
         }
 
-        /* Counter di Visite */
         .visit-counter {
             margin-top: 80px;
             padding: 40px;
@@ -173,7 +169,6 @@
             color: #000;
         }
 
-        /* Footer */
         footer {
             background: #000;
             color: #fff;
@@ -207,7 +202,6 @@
             color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             nav {
                 padding: 20px 30px;
@@ -247,7 +241,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav>
             <div class="logo">Gianluca Biasatti</div>
@@ -260,7 +253,6 @@
         <div class="header-second-line"></div>
     </header>
 
-    <!-- About -->
     <div class="about-container">
         <h1 class="page-title">About Me</h1>
         
@@ -284,15 +276,13 @@
                 </p>
             </div>
 
-            <!-- Counter di Visite -->
             <div class="visit-counter">
-                <div class="counter-label">Visite Totali</div>
+                <div class="counter-label">Visitatori Unici</div>
                 <div class="counter-number" id="visitCounter">0</div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="social-links">
             <a href="#">Instagram</a>
@@ -303,28 +293,36 @@
     </footer>
 
     <script>
-        // Funzione per gestire il counter di visite
-        function initializeVisitCounter() {
-            // Recupera il numero di visite dal localStorage
-            let visits = localStorage.getItem('visitCounter');
-            
-            // Se non esiste, inizializza a 1
-            if (!visits) {
-                visits = 1;
-            } else {
-                // Incrementa di 1
-                visits = parseInt(visits) + 1;
-            }
-            
-            // Salva il nuovo valore
-            localStorage.setItem('visitCounter', visits);
-            
-            // Aggiorna l'elemento HTML
-            document.getElementById('visitCounter').textContent = visits;
+        // Genera un ID univoco per il dispositivo
+        function generateDeviceID() {
+            return 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         }
 
-        // Esegui la funzione quando la pagina è caricata
-        window.addEventListener('load', initializeVisitCounter);
+        // Inizializza il counter di visitatori unici
+        function initializeUniqueVisitorCounter() {
+            let deviceID = localStorage.getItem('deviceID');
+            let uniqueVisitors = parseInt(localStorage.getItem('uniqueVisitors')) || 0;
+            let visitedDevices = JSON.parse(localStorage.getItem('visitedDevices')) || [];
+
+            // Se è la prima visita, genera un ID univoco
+            if (!deviceID) {
+                deviceID = generateDeviceID();
+                localStorage.setItem('deviceID', deviceID);
+            }
+
+            // Se questo dispositivo non è ancora stato conteggiato
+            if (!visitedDevices.includes(deviceID)) {
+                visitedDevices.push(deviceID);
+                uniqueVisitors++;
+                localStorage.setItem('visitedDevices', JSON.stringify(visitedDevices));
+                localStorage.setItem('uniqueVisitors', uniqueVisitors);
+            }
+
+            // Aggiorna il display
+            document.getElementById('visitCounter').textContent = uniqueVisitors;
+        }
+
+        window.addEventListener('load', initializeUniqueVisitorCounter);
     </script>
 </body>
 </html>

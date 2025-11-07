@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gianluca Biasatti - Gallerie fotografiche professionali di paesaggi e natura">
+    <meta name="description" content="Gianluca Biasatti - Gallerie fotografiche professionali">
     <meta name="theme-color" content="#000">
-    <meta property="og:title" content="Gianluca Biasatti Photography - Gallery">
+    <meta property="og:title" content="Gianluca Biasatti Photography">
     <meta property="og:description" content="Esplora le gallerie fotografiche professionali">
     <meta property="og:type" content="website">
-    <title>Gianluca Biasatti Photography - Gallery</title>
+    <title>Gianluca Biasatti Photography</title>
     
     <style>
-        /* ============================================
-           VARIABILI E CONFIGURAZIONE GLOBALE
-           ============================================ */
         :root {
-            /* Colori */
             --color-primary: #FFD700;
             --color-bg: #000;
             --color-text-secondary: rgba(180, 180, 180, 0.7);
@@ -23,12 +19,10 @@
             --color-hover: #fffbe0;
             --color-accent: #FF9430;
             
-            /* Tipografia */
             --font-primary: Georgia, serif;
             --font-size-base: 16px;
             --line-height-base: 1.6;
             
-            /* Spacing */
             --spacing-xs: 0.5rem;
             --spacing-sm: 1rem;
             --spacing-md: 1.5rem;
@@ -36,20 +30,15 @@
             --spacing-xl: 3rem;
             --spacing-2xl: 5rem;
             
-            /* Layout */
             --header-height: 5.625rem;
             --max-width: 1400px;
             --border-radius: 0.25rem;
             
-            /* Animazioni */
             --transition-smooth: 0.3s ease;
             --transition-fast: 0.15s ease;
             --transition-slow: 0.6s ease;
         }
 
-        /* ============================================
-           RESET E FONDAMENTA
-           ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -69,9 +58,6 @@
             overflow-x: hidden;
         }
 
-        /* ============================================
-           HEADER E NAVIGAZIONE
-           ============================================ */
         header {
             position: fixed;
             top: 0;
@@ -164,15 +150,40 @@
             fill: var(--color-hover);
         }
 
-        /* ============================================
-           GALLERY CONTAINER
-           ============================================ */
-        .gallery-container {
+        .breadcrumb {
             margin-top: var(--header-height);
-            padding: var(--spacing-2xl) var(--spacing-lg) 7.5rem;
+            padding: var(--spacing-lg) var(--spacing-lg) 0;
             max-width: 1600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .breadcrumb a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 0.6875rem;
+            letter-spacing: 0.0625rem;
+            text-transform: uppercase;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.7;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            opacity: 0.5;
+        }
+
+        .gallery-container {
+            padding: var(--spacing-xl) var(--spacing-lg) 7.5rem;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .page-title {
@@ -181,17 +192,15 @@
             font-weight: 300;
             letter-spacing: 0.25rem;
             text-transform: uppercase;
-            margin-bottom: var(--spacing-2xl);
+            margin: var(--spacing-xl) 0;
             opacity: 0.8;
         }
 
-        /* ============================================
-           GALLERY GRID
-           ============================================ */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2.5rem;
+            width: 100%;
         }
 
         .album-card {
@@ -240,7 +249,7 @@
             font-size: 1rem;
             font-weight: 400;
             letter-spacing: 0.125rem;
-            color: var(--color-accent);
+            color: var(--color-primary);
             transition: opacity var(--transition-smooth);
         }
 
@@ -248,14 +257,12 @@
             opacity: 0.6;
         }
 
-        /* ============================================
-           FOOTER
-           ============================================ */
         footer {
             background: var(--color-bg);
             padding: var(--spacing-xl) var(--spacing-lg);
             text-align: center;
             border-top: 1px solid var(--color-border);
+            width: 100%;
         }
 
         footer p {
@@ -287,13 +294,10 @@
             border-color: var(--color-primary);
         }
 
-        /* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1.875rem;
+                gap: 2rem;
             }
         }
 
@@ -314,18 +318,17 @@
                 font-size: 0.6875rem;
             }
 
+            .breadcrumb {
+                padding: var(--spacing-md) var(--spacing-lg) 0;
+            }
+
             .gallery-container {
-                margin-top: var(--header-height);
-                padding: 3.75rem 1.25rem 5rem;
+                padding: var(--spacing-lg) 1.25rem 5rem;
             }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .album-title {
-                font-size: 0.875rem;
+                gap: 1.5rem;
             }
 
             footer {
@@ -342,18 +345,21 @@
                 font-size: 0.5625rem;
             }
 
-            .gallery-container {
-                padding: 2.5rem 1rem 3rem;
+            .breadcrumb {
+                padding: var(--spacing-sm) var(--spacing-sm) 0;
+                font-size: 0.6rem;
             }
 
-            .album-title {
+            .gallery-container {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            .page-title {
+                margin: var(--spacing-lg) 0;
                 font-size: 0.75rem;
             }
         }
 
-        /* ============================================
-           ACCESSIBILITÀ
-           ============================================ */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -366,19 +372,16 @@
             }
         }
 
-        /* ============================================
-           PRINT
-           ============================================ */
         @media print {
             header,
-            footer {
+            footer,
+            .breadcrumb {
                 display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header role="banner">
         <nav role="navigation" aria-label="Navigazione principale">
             <div class="logo">
@@ -408,47 +411,45 @@
         </nav>
     </header>
 
-    <!-- Gallery -->
+    <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Gallery</span>
+    </div>
+
     <main class="gallery-container">
         <h1 class="page-title">Gallery</h1>
         <div class="gallery-grid">
-           
-            <!-- Album 1: VIAGGI -->
             <a href="viaggi.html" class="album-card" title="Accedi alla galleria Viaggi">
                 <div class="album-image-container">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Galleria Viaggi - Fotografie di paesaggi e destinazioni" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Galleria Viaggi">
                 </div>
-                <div class="album-title">VIAGGI</div>
+                <div class="album-title">Viaggi</div>
             </a>
 
-            <!-- Album 2: PORTFOLIO -->
             <a href="portfolio.html" class="album-card" title="Accedi alla galleria Portfolio">
                 <div class="album-image-container">
-                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Galleria Portfolio - Migliori fotografie professionali" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Galleria Portfolio">
                 </div>
-                <div class="album-title">PORTFOLIO</div>
+                <div class="album-title">Portfolio</div>
             </a>
 
-            <!-- Album 3: VARIE -->
             <a href="varie.html" class="album-card" title="Accedi alla galleria Varie">
                 <div class="album-image-container">
-                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Galleria Varie - Raccolta di fotografie diversificate" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Galleria Varie">
                 </div>
-                <div class="album-title">VARIE</div>
+                <div class="album-title">Varie</div>
             </a>
 
-            <!-- Album 4: MULTIVISIONI -->
             <a href="multivisioni.html" class="album-card" title="Accedi alla galleria Multivisioni">
                 <div class="album-image-container">
-                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="Galleria Multivisioni - Proiezioni e presentazioni fotografiche" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="Galleria Multivisioni">
                 </div>
-                <div class="album-title">MULTIVISIONI</div>
+                <div class="album-title">Multivisioni</div>
             </a>
-
         </div>
     </main>
 
-    <!-- Footer -->
     <footer role="contentinfo">
         <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
         <a href="https://www.linkedin.com/in/marcobiasatti/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="Profilo LinkedIn">
@@ -457,28 +458,18 @@
     </footer>
 
     <script>
-        /**
-         * CONFIGURAZIONE CENTRALIZZATA
-         */
         const CONFIG = {
             email: 'biasattig@libero.it',
             notificationDuration: 1500
         };
 
-        /**
-         * Copia email negli appunti
-         */
         function handleEmailCopy(e) {
             e.preventDefault();
-            
             navigator.clipboard.writeText(CONFIG.email)
                 .then(() => showNotification())
                 .catch(() => emailCopyFallback());
         }
 
-        /**
-         * Fallback per browser vecchi
-         */
         function emailCopyFallback() {
             const textarea = document.createElement('textarea');
             textarea.value = CONFIG.email;
@@ -486,7 +477,6 @@
             textarea.style.left = '-999999px';
             document.body.appendChild(textarea);
             textarea.select();
-            
             try {
                 document.execCommand('copy');
                 showNotification();
@@ -497,9 +487,6 @@
             }
         }
 
-        /**
-         * Mostra notifica
-         */
         function showNotification() {
             console.log('Email copiata:', CONFIG.email);
         }

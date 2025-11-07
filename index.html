@@ -1,365 +1,679 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gianluca Biasatti Photography - Home</title>
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        font-family: Georgia, serif;
-        background: #000;
-        color: #FFD700; /* oro/giallo */
-        overflow-x: hidden;
-    }
-    header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: #000;
-        z-index: 1000;
-    }
-    nav {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 12px 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        position: relative;
-    }
-    .logo {
-        font-size: 28px;
-        font-family: Georgia, serif;
-        font-weight: 400;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: #FFD700;
-        position: relative;
-        text-align: center;
-        width: 100%;
-        padding-bottom: 10px;
-    }
-    .logo .subtitle {
-        font-size: 20px;
-        font-family: Georgia, serif;
-        font-weight: 300;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        color: #FFD700;
-        margin-top: 2px;
-    }
-    .logo::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 100vw;
-        height: 1px;
-        background: #FFD700;
-        transform: translateX(-50%);
-    }
-    .nav-links {
-        display: flex;
-        gap: 28px;
-        list-style: none;
-        padding-top: 10px;
-        padding-bottom: 12px;
-        align-items: center;
-    }
-    .nav-links a, .icon-link {
-        color: #FFD700;
-        text-decoration: none;
-        font-size: 11px;
-        font-family: Georgia, serif;
-        font-weight: 300;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: opacity 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-    .nav-links a:hover, .icon-link:hover { opacity: 0.7; }
-    /* Icon containers */
-    .icon-link svg {
-        width: 18px;
-        height: 18px;
-        fill: #FFD700;
-        transition: fill 0.3s;
-    }
-    .icon-link:hover svg { fill: #fffbe0; }
-    .copy-notify {
-        position: absolute;
-        top: 50px;
-        right: 30px;
-        background: #222;
-        color: #FFD700;
-        padding: 9px 18px;
-        border-radius: 16px;
-        font-size: 13px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.4s;
-        z-index: 2000;
-    }
-    .copy-notify.show { opacity: 0.85; }
-    .slideshow-container {
-        margin-top: 90px;
-        height: calc(100vh - 90px);
-        position: relative;
-        overflow: hidden;
-    }
-    .slide {
-        display: none;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    .slide.active {
-        display: block;
-        animation: fadeIn 1s ease-in-out;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    .slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .slideshow-container .slide-controls {
-        opacity: 0;
-        transition: opacity 0.4s ease;
-    }
-    .slideshow-container:hover .slide-controls { opacity: 1; }
-    .prev-btn, .next-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255, 215, 0, 0.08); /* quasi trasparente */
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        font-size: 28px;
-        color: #FFD700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-        font-family: Georgia, serif;
-        opacity: 0.4;
-    }
-    .prev-btn:hover, .next-btn:hover { background: rgba(255, 215, 0, 0.18); opacity: 0.8; }
-    .prev-btn { left: 30px; }
-    .next-btn { right: 30px; }
-    .slide-dots {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 10px;
-        z-index: 10;
-    }
-    .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(255, 215, 0, 0.19); /* trasparente */
-        cursor: pointer;
-        transition: all 0.3s;
-        border: 1px solid rgba(255, 215, 0, 0.29);
-        opacity: 0.5;
-    }
-    .dot:hover { background: rgba(255, 215, 0, 0.45); opacity: 1; }
-    .dot.active { background: rgba(255, 215, 0, 0.5); opacity: 1; transform: scale(1.25); }
-    footer {
-        background: #000;
-        color: #FFD700;
-        padding: 60px 50px;
-        text-align: center;
-        font-family: Georgia, serif;
-    }
-    footer p {
-        font-size: 11px;
-        letter-spacing: 1px;
-        color: rgba(180, 180, 180, 0.7); /* grigio trasparente 70% */
-    }
-    @media (max-width: 768px) {
-        nav { padding: 20px 30px; }
-        .nav-links { gap: 22px; }
-        .nav-links a { font-size: 11px; }
-        .slideshow-container { margin-top: 120px; height: calc(100vh - 120px);}
-        .prev-btn, .next-btn { width: 40px; height: 40px; font-size: 22px;}
-        .prev-btn { left: 15px; }
-        .next-btn { right: 15px; }
-        .slide-dots { bottom: 20px; gap: 8px;}
-        .dot { width: 6px; height: 6px;}
-        .slideshow-container .slide-controls { opacity: 1; }
-        .copy-notify { top: 80px; right: 10px; }
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gianluca Biasatti - Fotografo professionista specializzato in fotografia di paesaggi e natura">
+    <meta name="theme-color" content="#000">
+    <title>Gianluca Biasatti Photography - Home</title>
+    <style>
+        /* Reset e variabili CSS */
+        :root {
+            --color-primary: #FFD700;
+            --color-bg: #000;
+            --color-text-secondary: rgba(180, 180, 180, 0.7);
+            --transition-smooth: 0.3s ease;
+            --header-height: 90px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: var(--color-bg);
+            color: var(--color-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header e Navigazione */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--color-bg);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: clamp(20px, 5vw, 28px);
+            font-family: Georgia, serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            text-align: center;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .logo .subtitle {
+            font-size: clamp(14px, 4vw, 20px);
+            font-family: Georgia, serif;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-top: 2px;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100vw;
+            height: 1px;
+            background: var(--color-primary);
+            transform: translateX(-50%);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(15px, 4vw, 28px);
+            list-style: none;
+            padding-top: 10px;
+            padding-bottom: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a,
+        .icon-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 11px;
+            font-family: Georgia, serif;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: opacity var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .icon-link:hover {
+            opacity: 0.7;
+        }
+
+        .icon-link svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--color-primary);
+            transition: fill var(--transition-smooth);
+        }
+
+        .icon-link:hover svg {
+            fill: #fffbe0;
+        }
+
+        .copy-notify {
+            position: fixed;
+            top: 120px;
+            right: 30px;
+            background: #222;
+            color: var(--color-primary);
+            padding: 10px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
+
+        /* Slideshow */
+        .slideshow-container {
+            margin-top: var(--header-height);
+            height: calc(100vh - var(--header-height));
+            position: relative;
+            overflow: hidden;
+            background: var(--color-bg);
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            loading: lazy;
+        }
+
+        .slideshow-container .slide-controls {
+            opacity: 0;
+            transition: opacity var(--transition-smooth) ease;
+        }
+
+        .slideshow-container:hover .slide-controls {
+            opacity: 1;
+        }
+
+        .prev-btn,
+        .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 28px;
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            font-family: Georgia, serif;
+            opacity: 0.4;
+        }
+
+        .prev-btn:hover,
+        .next-btn:hover {
+            background: rgba(255, 215, 0, 0.18);
+            opacity: 0.8;
+        }
+
+        .prev-btn {
+            left: 30px;
+        }
+
+        .next-btn {
+            right: 30px;
+        }
+
+        .slide-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.19);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            border: 1px solid rgba(255, 215, 0, 0.29);
+            opacity: 0.5;
+        }
+
+        .dot:hover {
+            background: rgba(255, 215, 0, 0.45);
+            opacity: 1;
+        }
+
+        .dot.active {
+            background: rgba(255, 215, 0, 0.5);
+            opacity: 1;
+            transform: scale(1.25);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg);
+            color: var(--color-primary);
+            padding: 60px 50px;
+            text-align: center;
+            font-family: Georgia, serif;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        footer p {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 0 8px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid #555555;
+            border-radius: 50%;
+            font-family: Georgia, serif;
+            font-weight: bold;
+            font-size: 10px;
+            color: #555555;
+            text-align: center;
+            line-height: 32px;
+            text-decoration: none;
+            opacity: 0.3;
+            transition: opacity var(--transition-smooth), border-color var(--transition-smooth);
+        }
+
+        .social-link:hover {
+            opacity: 0.6;
+            border-color: var(--color-primary);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 120px;
+            }
+
+            nav {
+                padding: 20px 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                padding-top: 12px;
+                padding-bottom: 10px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .prev-btn,
+            .next-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+            }
+
+            .prev-btn {
+                left: 15px;
+            }
+
+            .next-btn {
+                right: 15px;
+            }
+
+            .slide-dots {
+                bottom: 20px;
+                gap: 8px;
+            }
+
+            .dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            .slideshow-container .slide-controls {
+                opacity: 1;
+            }
+
+            .copy-notify {
+                top: 140px;
+                right: 15px;
+                left: 15px;
+                width: auto;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+
+            footer p {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 9px;
+            }
+
+            .icon-link svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .prev-btn,
+            .next-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 20px;
+            }
+
+            .prev-btn {
+                left: 10px;
+            }
+
+            .next-btn {
+                right: 10px;
+            }
+
+            .slide-dots {
+                bottom: 15px;
+                gap: 6px;
+            }
+
+            .dot {
+                width: 5px;
+                height: 5px;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            header,
+            footer,
+            .slide-controls {
+                display: none;
+            }
+
+            .slide {
+                page-break-after: always;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- Notifica copia email -->
-<div id="copyNotify" class="copy-notify">Email copiata!</div>
-<!-- Header -->
-<header>
-    <nav>
-        <div class="logo">Gianluca Biasatti<div class="subtitle">PHOTOGRAPHY</div></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="about.html">About</a></li>
-            <li>
-                <a class="icon-link" href="https://www.instagram.com/gianluca_biasatti_photography/" target="_blank" title="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.98 2.01A6.996 6.996 0 0 1 21.99 7v10a6.996 6.996 0 0 1-5.01 4.99H7.02A6.998 6.998 0 0 1 2 17V7a6.998 6.998 0 0 1 5.02-4.99H16.98zm0 2H7.02A5.003 5.003 0 0 0 3 7v10a5.003 5.003 0 0 0 4.02 4.99h9.96A5.003 5.003 0 0 0 21.99 17V7a5.003 5.003 0 0 0-5.01-4.99zm-4.98 3.2a5.79 5.79 0 1 1 0 11.58 5.79 5.79 0 0 1 0-11.58zm0 1.59a4.2 4.2 0 1 0 0 8.42 4.2 4.2 0 0 0 0-8.42zm6.07.73a1.44 1.44 0 1 1 0 2.88 1.44 1.44 0 0 1 0-2.88z"/></svg>
-                </a>
-            </li>
-            <li>
-                <a class="icon-link" href="https://www.facebook.com/gianluca.biasatti" target="_blank" title="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 2H5a3 3 0 0 0-3 3v22a3 3 0 0 0 3 3h11V20h-3v-4h3v-3c0-3 2-4.67 4.67-4.67H25v4h-2c-1 0-1.33 0.33-1.33 1V16h3.33l-0.67 4H21v10h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"/></svg>
-                </a>
-            </li>
-            <li>
-                <a class="icon-link" id="mailIcon" href="#" title="Copia Email" onclick="copyEmail(event)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29 7H3c-1.1 0-2 0.9-2 2v14c0 1.1 0.9 2 2 2h26c1.1 0 2-0.9 2-2V9c0-1.1-0.9-2-2-2zm0 4.24-13 8.13-13-8.13V9l13 8 13-8v2.24z"/></svg>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
+    <!-- Notifica copia email -->
+    <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata!</div>
 
-<!-- Slideshow Full Height -->
-<div class="slideshow-container">
-    <div class="slide active">
-        <img src="https://lh3.googleusercontent.com/d/1YYmc6bVQ4X1kzQLRK_svFJS8TUik8_O8" alt="Foto di mio padre">
-    </div>
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&q=80" alt="Foresta">
-    </div>
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1920&q=80" alt="Lago">
-    </div>
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Mare">
-    </div>
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1920&q=80" alt="Cascata">
-    </div>
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1920&q=80" alt="Sentiero">
-    </div>
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80" alt="Picco">
-    </div>
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80" alt="Paesaggio">
-    </div>
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1920&q=80" alt="Natura">
-    </div>
+    <!-- Header -->
+    <header role="banner">
+        <nav role="navigation">
+            <div class="logo">
+                Gianluca Biasatti
+                <div class="subtitle">Photography</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li>
+                    <a class="icon-link" href="https://www.instagram.com/gianluca_biasatti_photography/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Profilo Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.98 2.01A6.996 6.996 0 0 1 21.99 7v10a6.996 6.996 0 0 1-5.01 4.99H7.02A6.998 6.998 0 0 1 2 17V7a6.998 6.998 0 0 1 5.02-4.99H16.98zm0 2H7.02A5.003 5.003 0 0 0 3 7v10a5.003 5.003 0 0 0 4.02 4.99h9.96A5.003 5.003 0 0 0 21.99 17V7a5.003 5.003 0 0 0-5.01-4.99zm-4.98 3.2a5.79 5.79 0 1 1 0 11.58 5.79 5.79 0 0 1 0-11.58zm0 1.59a4.2 4.2 0 1 0 0 8.42 4.2 4.2 0 0 0 0-8.42zm6.07.73a1.44 1.44 0 1 1 0 2.88 1.44 1.44 0 0 1 0-2.88z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="icon-link" href="https://www.facebook.com/gianluca.biasatti" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Profilo Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 2H5a3 3 0 0 0-3 3v22a3 3 0 0 0 3 3h11V20h-3v-4h3v-3c0-3 2-4.67 4.67-4.67H25v4h-2c-1 0-1.33 0.33-1.33 1V16h3.33l-0.67 4H21v10h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="icon-link" id="mailIcon" href="#" title="Copia Email" aria-label="Copia indirizzo email" onclick="copyEmail(event)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29 7H3c-1.1 0-2 0.9-2 2v14c0 1.1 0.9 2 2 2h26c1.1 0 2-0.9 2-2V9c0-1.1-0.9-2-2-2zm0 4.24-13 8.13-13-8.13V9l13 8 13-8v2.24z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Controlli che scompaiono -->
-    <div class="slide-controls">
-        <!-- Frecce ai lati -->
-        <button class="prev-btn" onclick="changeSlide(-1)">‹</button>
-        <button class="next-btn" onclick="changeSlide(1)">›</button>
-
-        <!-- Pallini in basso -->
-        <div class="slide-dots">
-            <span class="dot active" onclick="currentSlide(0)"></span>
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-            <span class="dot" onclick="currentSlide(6)"></span>
-            <span class="dot" onclick="currentSlide(7)"></span>
-            <span class="dot" onclick="currentSlide(8)"></span>
+    <!-- Slideshow Full Height -->
+    <main class="slideshow-container" role="region" aria-label="Slideshow fotografico">
+        <div class="slide active">
+            <img src="https://lh3.googleusercontent.com/d/1YYmc6bVQ4X1kzQLRK_svFJS8TUik8_O8" alt="Fotografia di paesaggio - Foto principale" loading="lazy">
         </div>
-    </div>
-</div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&q=80" alt="Paesaggio forestale con nebbia" loading="lazy">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1920&q=80" alt="Lago tranquillo al tramonto" loading="lazy">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Onda del mare con schiuma" loading="lazy">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1920&q=80" alt="Cascata in montagna" loading="lazy">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1920&q=80" alt="Sentiero nel bosco" loading="lazy">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80" alt="Picco di montagna innevato" loading="lazy">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80" alt="Paesaggio rurale verde" loading="lazy">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1920&q=80" alt="Natura selvaggia" loading="lazy">
+        </div>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
-   <a href="https://www.linkedin.com/in/marcobiasatti/" target="_blank" 
-     style="display: inline-block; margin-top: 20px; width: 18px; height: 18px; 
-            border: 1px solid #555555; border-radius: 50%; 
-            font-family: Georgia, serif; font-weight: bold; font-size: 10px; 
-            color: #555555; text-align: center; line-height: 18px; 
-            text-decoration: none; opacity: 0.3; transition: opacity 0.3s;">
-    MB
-  </a>
-</footer>
+        <!-- Controlli che scompaiono -->
+        <div class="slide-controls">
+            <button class="prev-btn" onclick="changeSlide(-1)" aria-label="Slide precedente">‹</button>
+            <button class="next-btn" onclick="changeSlide(1)" aria-label="Slide successiva">›</button>
 
-<script>
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const totalSlides = slides.length;
-    let autoSlideInterval;
+            <div class="slide-dots" role="tablist" aria-label="Selezione slide">
+                <span class="dot active" onclick="currentSlide(0)" role="tab" aria-selected="true" aria-label="Slide 1"></span>
+                <span class="dot" onclick="currentSlide(1)" role="tab" aria-selected="false" aria-label="Slide 2"></span>
+                <span class="dot" onclick="currentSlide(2)" role="tab" aria-selected="false" aria-label="Slide 3"></span>
+                <span class="dot" onclick="currentSlide(3)" role="tab" aria-selected="false" aria-label="Slide 4"></span>
+                <span class="dot" onclick="currentSlide(4)" role="tab" aria-selected="false" aria-label="Slide 5"></span>
+                <span class="dot" onclick="currentSlide(5)" role="tab" aria-selected="false" aria-label="Slide 6"></span>
+                <span class="dot" onclick="currentSlide(6)" role="tab" aria-selected="false" aria-label="Slide 7"></span>
+                <span class="dot" onclick="currentSlide(7)" role="tab" aria-selected="false" aria-label="Slide 8"></span>
+                <span class="dot" onclick="currentSlide(8)" role="tab" aria-selected="false" aria-label="Slide 9"></span>
+            </div>
+        </div>
+    </main>
 
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
+        <a href="https://www.linkedin.com/in/marcobiasatti/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="Profilo LinkedIn">
+            MB
+        </a>
+    </footer>
 
-        if (index >= totalSlides) currentIndex = 0;
-        if (index < 0) currentIndex = totalSlides - 1;
+    <script>
+        // Configurazione
+        const config = {
+            autoSlideInterval: 10000,
+            fadeInDuration: 800
+        };
 
-        slides[currentIndex].classList.add('active');
-        dots[currentIndex].classList.add('active');
-    }
+        // Stato slideshow
+        let currentIndex = 0;
+        let autoSlideTimer;
 
-    function changeSlide(direction) {
-        currentIndex += direction;
-        showSlide(currentIndex);
-        resetAutoSlide();
-    }
+        // Elementi DOM
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
 
-    function currentSlide(index) {
-        currentIndex = index;
-        showSlide(currentIndex);
-        resetAutoSlide();
-    }
+        /**
+         * Visualizza una slide specifica
+         * @param {number} index - Indice della slide da visualizzare
+         */
+        function showSlide(index) {
+            // Validazione indice
+            if (index >= totalSlides) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = totalSlides - 1;
+            } else {
+                currentIndex = index;
+            }
 
-    function autoSlide() {
-        currentIndex++;
-        showSlide(currentIndex);
-    }
+            // Aggiorna tutte le slide
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === currentIndex);
+            });
 
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(autoSlide, 10000);
-    }
+            // Aggiorna tutti i dot
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+                dot.setAttribute('aria-selected', i === currentIndex);
+            });
+        }
 
-    autoSlideInterval = setInterval(autoSlide, 10000);
+        /**
+         * Cambia slide nella direzione specificata
+         * @param {number} direction - Direzione (-1 per precedente, 1 per successiva)
+         */
+        function changeSlide(direction) {
+            showSlide(currentIndex + direction);
+            resetAutoSlide();
+        }
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') changeSlide(-1);
-        if (e.key === 'ArrowRight') changeSlide(1);
-    });
+        /**
+         * Vai a una slide specifica
+         * @param {number} index - Indice della slide
+         */
+        function currentSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
 
-    // Funzione copia email
-    function copyEmail(event) {
-        event.preventDefault();
-        const email = "biasattig@libero.it"; // metti la tua email!
-        navigator.clipboard.writeText(email).then(function() {
+        /**
+         * Avanza automaticamente alla slide successiva
+         */
+        function autoSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        /**
+         * Resetta il timer di autoplay
+         */
+        function resetAutoSlide() {
+            clearInterval(autoSlideTimer);
+            autoSlideTimer = setInterval(autoSlide, config.autoSlideInterval);
+        }
+
+        /**
+         * Copia email negli appunti
+         * @param {Event} event - Evento click
+         */
+        function copyEmail(event) {
+            event.preventDefault();
+            const email = "biasattig@libero.it";
+
+            // Usa Clipboard API moderna
+            navigator.clipboard.writeText(email)
+                .then(() => {
+                    showNotification();
+                })
+                .catch((err) => {
+                    // Fallback per browser più vecchi
+                    copyEmailFallback(email);
+                });
+        }
+
+        /**
+         * Fallback per browser che non supportano Clipboard API
+         * @param {string} email - Email da copiare
+         */
+        function copyEmailFallback(email) {
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showNotification();
+            } catch (err) {
+                console.error('Errore nella copia:', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        /**
+         * Mostra notifica di conferma
+         */
+        function showNotification() {
             const notify = document.getElementById('copyNotify');
             notify.classList.add('show');
-            setTimeout(() => notify.classList.remove('show'), 1300);
+            setTimeout(() => notify.classList.remove('show'), 1500);
+        }
+
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', () => {
+            autoSlideTimer = setInterval(autoSlide, config.autoSlideInterval);
         });
-    }
-</script>
+
+        // Controlli tastiera
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Pausa autoplay quando si lascia il tab
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(autoSlideTimer);
+            } else {
+                resetAutoSlide();
+            }
+        });
+    </script>
 </body>
 </html>

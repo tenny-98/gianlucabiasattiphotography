@@ -1,175 +1,307 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gianluca Biasatti Photography - Gallery</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-      background: #fff;
-      color: #000;
-    }
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #fff;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-    .logo {
-      font-size: 30px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #000;
-      text-align: center;
-      width: 100%;
-      padding: 20px 0 12px 0;
-    }
-    .logo::after {
-      content: "";
-      display: block;
-      width: 100vw;
-      height: 1px;
-      background: #e0e0e0;
-      margin: 0 auto;
-      transform: translateY(12px);
-    }
-    nav {
-      display: flex;
-      gap: 22px;
-      justify-content: center;
-      padding-bottom: 12px;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 28px;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-links a {
-      color: #000;
-      text-decoration: none;
-      font-size: 18px;
-      letter-spacing: 1px;
-    }
-    .gallery-wrapper {
-      margin-top: 120px;
-      padding-bottom: 40px;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .album-card {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: #000;
-      border: 1px solid #e0e0e0;
-      background: #fff;
-      aspect-ratio: 1/1;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-      transition: transform 0.4s, box-shadow 0.3s;
-    }
-    .album-card:hover {
-      transform: translateY(-8px) scale(1.04);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.11);
-    }
-    .album-image-container {
-      width: 100%;
-      height: 85%;
-      overflow: hidden;
-      background: #f5f5f5;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .album-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    .album-card:hover .album-image-container img {
-      transform: scale(1.08);
-    }
-    .album-title {
-      height: 15%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-style: italic;
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      color: #FF9430;
-      background: #fff;
-      border-top: 1px solid #e0e0e0;
-      padding: 10px 0;
-    }
-    @media screen and (max-width: 900px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media screen and (max-width: 600px) {
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gianluca Biasatti Photography - Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+            background: #fff;
+            color: #000;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #000;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        /* Linea orizzontale DOPO il logo, a tutta larghezza */
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100vw;
+            height: 1px;
+            background: #e0e0e0;
+            transform: translateX(-50%);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            padding-top: 10px;
+            padding-bottom: 12px;
+        }
+
+        .nav-links a {
+            color: #000;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.5;
+        }
+
+        /* Seconda linea orizzontale - a tutta larghezza come la prima */
+        .header-second-line {
+            width: 100%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        /* Gallery */
+        .gallery-container {
+            margin-top: 96px;
+            padding: 80px 50px 120px;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 80px;
+            opacity: 0.8;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .album-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.4s ease, box-shadow 0.3s;
+            background: #fff;
+            aspect-ratio: 1/1;
+        }
+
+        .album-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .album-image-container {
+            position: relative;
+            width: 100%;
+            height: 85%;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .album-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .album-card:hover .album-image-container img {
+            transform: scale(1.08);
+        }
+
+        .album-title {
+            height: 15%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-style: italic;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #FF9430;
+            transition: opacity 0.3s;
+        }
+
+        .album-card:hover .album-title {
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        footer p {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-links {
+                gap: 25px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .gallery-container {
+                margin-top: 120px;
+                padding: 60px 20px 80px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .album-title {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">Gianluca Biasatti Photography</div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="viaggi.html">Viaggi</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contatti.html">Contatti</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main class="gallery-wrapper">
-    <div class="gallery-grid">
-      <a href="viaggi.html" class="album-card">
-        <div class="album-image-container">
-          <img src="img/viaggi.jpg" alt="Viaggi">
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Gianluca Biasatti</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+        <div class="header-second-line"></div>
+    </header>
+
+    <!-- Gallery -->
+    <div class="gallery-container">
+        <h1 class="page-title">Gallery</h1>
+        <div class="gallery-grid">
+           
+            <!-- Album 1: VIAGGI -->
+            <a href="viaggi.html" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Viaggi">
+                </div>
+                <div class="album-title">VIAGGI</div>
+            </a>
+
+            <!-- Album 2: PORTFOLIO -->
+            <a href="portfolio.html" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="Portfolio">
+                </div>
+                <div class="album-title">PORTFOLIO</div>
+            </a>
+
+            <!-- Album 3: VARIE -->
+            <a href="varie.html" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80" alt="Varie">
+                </div>
+                <div class="album-title">VARIE</div>
+            </a>
+
+            <!-- Album 4: MULTIVISIONI -->
+            <a href="multivisioni.html" class="album-card">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="Multivisioni">
+                </div>
+                <div class="album-title">MULTIVISIONI</div>
+            </a>
+
         </div>
-        <div class="album-title">Viaggi</div>
-      </a>
-      <a href="portfolio.html" class="album-card">
-        <div class="album-image-container">
-          <img src="img/portfolio.jpg" alt="Portfolio">
-        </div>
-        <div class="album-title">Portfolio</div>
-      </a>
-      <a href="ritratti.html" class="album-card">
-        <div class="album-image-container">
-          <img src="img/ritratti.jpg" alt="Ritratti">
-        </div>
-        <div class="album-title">Ritratti</div>
-      </a>
-      <a href="street.html" class="album-card">
-        <div class="album-image-container">
-          <img src="img/street.jpg" alt="Street">
-        </div>
-        <div class="album-title">Street</div>
-      </a>
     </div>
-  </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Email</a>
+        </div>
+        <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
+    </footer>
 </body>
 </html>

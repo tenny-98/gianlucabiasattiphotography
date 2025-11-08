@@ -448,17 +448,11 @@
     </footer>
 
     <script>
-        // Dati delle foto - Modifica l'URL delle immagini con i tuoi file
+        // Dati delle foto da Cloudinary
         const photos = [
-            { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', alt: 'Cascata islandese' },
-            { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', alt: 'Aurora boreale' },
-            { url: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80', alt: 'Spiaggia nera' },
-            { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', alt: 'Formazioni rocciose' },
-            { url: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=800&q=80', alt: 'Montagne islandesi' },
-            { url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80', alt: 'Paesaggio glaciale' },
-            { url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80', alt: 'Tramonto islandese' },
-            { url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80', alt: 'Valle verde' },
-            { url: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=80', alt: 'Lago glaciale' }
+            { url: 'https://res.cloudinary.com/dkrjsc0ok/image/upload/w_800,q_auto,f_auto/citta-notte_i8ojq3.jpg', alt: 'citta-notte', fullUrl: 'https://res.cloudinary.com/dkrjsc0ok/image/upload/w_1600,q_auto,f_auto/citta-notte_i8ojq3.jpg' },
+            { url: 'https://res.cloudinary.com/dkrjsc0ok/image/upload/w_800,q_auto,f_auto/donna-alberi_jznin4.jpg', alt: 'donna-alberi', fullUrl: 'https://res.cloudinary.com/dkrjsc0ok/image/upload/w_1600,q_auto,f_auto/donna-alberi_jznin4.jpg' },
+            { url: 'https://res.cloudinary.com/dkrjsc0ok/image/upload/w_800,q_auto,f_auto/strada-neve_ka9peu.jpg', alt: 'strada-neve', fullUrl: 'https://res.cloudinary.com/dkrjsc0ok/image/upload/w_1600,q_auto,f_auto/strada-neve_ka9peu.jpg' },
         ];
 
         let currentPhotoIndex = 0;
@@ -488,7 +482,7 @@
             currentPhotoIndex = index;
             const modal = document.getElementById('photoModal');
             const img = document.getElementById('modalImage');
-            img.src = photos[index].url;
+            img.src = photos[index].fullUrl;
             img.alt = photos[index].alt;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -505,14 +499,14 @@
         function nextPhoto() {
             currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
             const img = document.getElementById('modalImage');
-            img.src = photos[currentPhotoIndex].url;
+            img.src = photos[currentPhotoIndex].fullUrl;
             img.alt = photos[currentPhotoIndex].alt;
         }
 
         function prevPhoto() {
             currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
             const img = document.getElementById('modalImage');
-            img.src = photos[currentPhotoIndex].url;
+            img.src = photos[currentPhotoIndex].fullUrl;
             img.alt = photos[currentPhotoIndex].alt;
         }
 

@@ -464,19 +464,14 @@
     </footer>
 
     <script>
-        // CONFIGURAZIONE
-        const CLOUD_NAME = 'gianlucabiasatti67'; // ✅ Aggiornato con il tuo Cloud Name
-        const TAG_NAME = 'islanda2025'; // ✅ Aggiornato con il tuo Tag
-
+        const TAG = 'islanda2025'; // Il tuo tag
         let allPhotos = [];
         let currentPhotoIndex = 0;
 
-        // Recupera le foto dal tag di Cloudinary
-        async function fetchPhotosFromCloudinary() {
+        // Recupera le foto dalla Vercel Function
+        async function fetchPhotosFromAPI() {
             try {
-                const response = await fetch(
-                    `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${TAG_NAME}.json`
-                );
+                const response = await fetch(`/api/photos?tag=${TAG}`);
                 
                 if (!response.ok) {
                     throw new Error('Errore nel caricamento delle foto');
@@ -484,16 +479,11 @@
                 
                 const data = await response.json();
                 
-                if (!data.resources || data.resources.length === 0) {
-                    throw new Error('Nessuna foto trovata con il tag specificato');
+                if (!data || data.length === 0) {
+                    throw new Error('Nessuna foto trovata con il tag: ' + TAG);
                 }
                 
-                // Trasforma i dati in formato compatibile
-                return data.resources.map(resource => ({
-                    url: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/w_800,q_auto,f_auto/${resource.public_id}`,
-                    alt: resource.public_id.split('/').pop(),
-                    fullUrl: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/w_1600,q_auto,f_auto/${resource.public_id}`
-                }));
+                return data;
             } catch (error) {
                 console.error('Errore nel caricamento delle foto:', error);
                 throw error;
@@ -505,7 +495,7 @@
             const grid = document.getElementById('photoGrid');
             
             try {
-                allPhotos = await fetchPhotosFromCloudinary();
+                allPhotos = await fetchPhotosFromAPI();
                 grid.innerHTML = '';
                 
                 allPhotos.forEach((photo, index) => {
@@ -522,7 +512,7 @@
                     grid.appendChild(card);
                 });
             } catch (error) {
-                grid.innerHTML = `<div class="error">Errore nel caricamento delle foto. Verifica il Cloud Name e il tag.</div>`;
+                grid.innerHTML = `<div class="error">Errore nel caricamento delle foto. Verifica che il tag "${TAG}" esista in Cloudinary.</div>`;
             }
         }
 

@@ -672,8 +672,10 @@
         let hideControlsTimeout;
 
         function getHighResUrl(url) {
-            return url.replace(/w=\d+/, 'w=2000');
-        }
+    return url
+        .replace(/w=\d+/, 'w_2000')
+        .replace(/q=\d+/, 'q_92');
+}
 
         function openLightbox(index) {
             currentIndex = index;

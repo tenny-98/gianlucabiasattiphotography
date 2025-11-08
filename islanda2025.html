@@ -304,6 +304,14 @@
             display: flex;
             gap: 1rem;
             z-index: 2001;
+            transition: opacity 0.5s ease;
+            opacity: 1;
+        }
+
+        .lightbox.hide-controls .lightbox-controls,
+        .lightbox.hide-controls .lightbox-nav {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .lightbox-btn {
@@ -659,6 +667,7 @@
          */
         const photos = Array.from(document.querySelectorAll('.photo-card img')).map(img => img.src);
         let currentIndex = 0;
+        let hideControlsTimeout;
 
         function openLightbox(index) {
             currentIndex = index;
@@ -666,23 +675,28 @@
             const image = document.getElementById('lightboxImage');
             image.src = photos[currentIndex];
             lightbox.classList.add('active');
+            lightbox.classList.remove('hide-controls');
             document.body.style.overflow = 'hidden';
+            startHideControlsTimer();
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
+            clearTimeout(hideControlsTimeout);
         }
 
         function nextPhoto() {
             currentIndex = (currentIndex + 1) % photos.length;
             document.getElementById('lightboxImage').src = photos[currentIndex];
+            resetHideControlsTimer();
         }
 
         function prevPhoto() {
             currentIndex = (currentIndex - 1 + photos.length) % photos.length;
             document.getElementById('lightboxImage').src = photos[currentIndex];
+            resetHideControlsTimer();
         }
 
         function toggleFullscreen() {
@@ -693,6 +707,27 @@
                 document.exitFullscreen();
             }
         }
+
+        function startHideControlsTimer() {
+            clearTimeout(hideControlsTimeout);
+            hideControlsTimeout = setTimeout(() => {
+                document.getElementById('lightbox').classList.add('hide-controls');
+            }, 1000);
+        }
+
+        function resetHideControlsTimer() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('hide-controls');
+            startHideControlsTimer();
+        }
+
+        // Show controls on mouse move
+        document.getElementById('lightbox').addEventListener('mousemove', () => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                resetHideControlsTimer();
+            }
+        });
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {

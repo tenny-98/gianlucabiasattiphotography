@@ -3,326 +3,671 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gianluca Biasatti Photography - About</title>
+    <meta name="description" content="Chi è Gianluca Biasatti - Fotografo professionista specializzato in fotografia di paesaggi e natura">
+    <meta name="theme-color" content="#000">
+    <meta property="og:title" content="About - Gianluca Biasatti Photography">
+    <meta property="og:description" content="Scopri la storia di Gianluca Biasatti e la sua passione per la fotografia">
+    <meta property="og:type" content="website">
+    <title>About - Gianluca Biasatti Photography</title>
+    
     <style>
-        /* [CSS rimane identico al precedente] */
+        /* ============================================
+           VARIABILI E CONFIGURAZIONE GLOBALE
+           ============================================ */
+        :root {
+            /* Colori */
+            --color-primary: #FFD700;
+            --color-bg: #000;
+            --color-text-secondary: rgba(180, 180, 180, 0.7);
+            --color-border: rgba(255, 215, 0, 0.1);
+            --color-hover: #fffbe0;
+            
+            /* Tipografia */
+            --font-primary: Georgia, serif;
+            --font-size-base: 16px;
+            --line-height-base: 1.6;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Layout */
+            --header-height: 12rem;
+            --max-width: 1400px;
+            --border-radius: 0.25rem;
+            
+            /* Animazioni */
+            --transition-smooth: 0.3s ease;
+            --transition-fast: 0.15s ease;
+        }
+
+        /* ============================================
+           RESET E FONDAMENTA
+           ============================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-            background: #fff;
-            color: #000;
+        html {
+            font-size: var(--font-size-base);
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: var(--font-primary);
+            background: var(--color-bg);
+            color: var(--color-primary);
+            line-height: var(--line-height-base);
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           HEADER E NAVIGAZIONE
+           ============================================ */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: #fff;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
             z-index: 1000;
         }
 
         nav {
-            max-width: 1400px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 12px 30px;
+            padding: 0.75rem var(--spacing-lg);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            position: relative;
+            gap: var(--spacing-sm);
         }
 
         .logo {
-            font-size: 30px;
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
             font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 0.125rem;
             text-transform: uppercase;
-            color: #000;
-            position: relative;
             text-align: center;
             width: 100%;
-            padding-bottom: 10px;
+            padding-bottom: var(--spacing-sm);
+            position: relative;
         }
 
         .logo::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -0.625rem;
             left: 50%;
             width: 100vw;
             height: 1px;
-            background: #e0e0e0;
+            background: var(--color-primary);
             transform: translateX(-50%);
+        }
+
+        .logo .subtitle {
+            font-size: clamp(0.875rem, 4vw, 1.25rem);
+            font-weight: 300;
+            letter-spacing: 0.25rem;
+            text-transform: uppercase;
+            margin-top: 0.125rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 28px;
+            gap: clamp(0.9375rem, 4vw, 1.75rem);
             list-style: none;
-            padding-top: 10px;
-            padding-bottom: 12px;
+            padding: var(--spacing-sm) 0;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .nav-links a {
-            color: #000;
+        .nav-links a,
+        .icon-link {
+            color: var(--color-primary);
             text-decoration: none;
-            font-size: 11px;
+            font-size: 0.6875rem;
             font-weight: 300;
-            letter-spacing: 1px;
+            letter-spacing: 0.0625rem;
             text-transform: uppercase;
-            transition: opacity 0.3s;
+            transition: opacity var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            white-space: nowrap;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .icon-link:hover {
+            opacity: 0.7;
+        }
+
+        .nav-links a.active {
             opacity: 0.5;
+            cursor: default;
         }
 
-        .header-second-line {
-            width: 100%;
-            height: 1px;
-            background: #e0e0e0;
+        .icon-link svg {
+            width: 1.125rem;
+            height: 1.125rem;
+            fill: var(--color-primary);
+            transition: fill var(--transition-smooth);
         }
 
-        .about-container {
-            margin-top: 96px;
-            padding: 80px 50px 120px;
-            max-width: 1000px;
+        .icon-link:hover svg {
+            fill: var(--color-hover);
+        }
+
+        /* ============================================
+           CONTENUTO PRINCIPALE
+           ============================================ */
+        main {
+            margin-top: var(--header-height);
+            padding: calc(var(--spacing-xl) * 2.5) var(--spacing-lg) var(--spacing-xl) var(--spacing-lg);
+            max-width: var(--max-width);
             margin-left: auto;
             margin-right: auto;
         }
 
-        .page-title {
-            text-align: center;
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 80px;
-            opacity: 0.8;
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--spacing-xl);
+            align-items: start;
         }
 
-        .about-content {
+        .profile-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 60px;
+            gap: var(--spacing-lg);
         }
 
-        .about-image {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
+        .profile-image {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1;
+            border: 2px solid var(--color-primary);
+            border-radius: 0.5rem;
             overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+            transition: transform var(--transition-smooth);
         }
 
-        .about-image img {
+        .profile-image:hover {
+            transform: scale(1.02);
+        }
+
+        .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(20%);
+            display: block;
         }
 
-        .about-text {
-            max-width: 700px;
+        .profile-meta {
             text-align: center;
+            width: 100%;
         }
 
-        .about-text p {
-            font-size: 18px;
-            line-height: 2;
-            font-weight: 300;
-            color: rgba(0, 0, 0, 0.8);
-            margin-bottom: 30px;
+        .profile-meta h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.125rem;
+            margin-bottom: var(--spacing-sm);
         }
 
-        .about-text p:last-child {
-            margin-bottom: 0;
+        .profile-meta p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            letter-spacing: 0.0625rem;
         }
 
-        .visit-counter {
-            margin-top: 80px;
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .counter-label {
-            font-size: 13px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.7;
-            margin-bottom: 15px;
-        }
-
-        .counter-number {
-            font-size: 48px;
-            font-weight: 200;
-            letter-spacing: -1px;
-            color: #000;
-        }
-
-        footer {
-            background: #000;
-            color: #fff;
-            padding: 60px 50px;
-            text-align: center;
-        }
-
-        .social-links {
+        /* ============================================
+           SEZIONE BIO
+           ============================================ */
+        .bio-section {
             display: flex;
-            gap: 40px;
-            justify-content: center;
-            margin-bottom: 30px;
+            flex-direction: column;
+            gap: var(--spacing-lg);
         }
 
-        .social-links a {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 12px;
-            text-decoration: none;
-            letter-spacing: 2px;
+        .bio-section h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.125rem;
             text-transform: uppercase;
-            transition: color 0.3s;
+            margin-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--spacing-md);
         }
 
-        .social-links a:hover {
-            color: #fff;
+        .bio-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .bio-content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            text-align: justify;
+        }
+
+        .bio-content p:first-letter {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* ============================================
+           COUNTER VISITE
+           ============================================ */
+        .visits-counter {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .visits-counter p {
+            font-size: 0.875rem;
+            letter-spacing: 0.0625rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .counter-value {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            font-weight: 400;
+        }
+
+        /* ============================================
+           HIGHLIGHTS
+           ============================================ */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .highlight-item {
+            text-align: center;
+            padding: var(--spacing-md);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: var(--border-radius);
+            transition: all var(--transition-smooth);
+        }
+
+        .highlight-item:hover {
+            border-color: var(--color-primary);
+            background: rgba(255, 215, 0, 0.03);
+        }
+
+        .highlight-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .highlight-value {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--color-bg);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            margin-top: var(--spacing-xl);
         }
 
         footer p {
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.6875rem;
+            letter-spacing: 0.0625rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .counter-section {
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .counter-value {
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            font-weight: 400;
+            letter-spacing: 0.0625rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 0 0.5rem;
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid #555;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.625rem;
+            color: #555;
+            text-align: center;
+            line-height: 2rem;
+            text-decoration: none;
+            opacity: 0.3;
+            transition: opacity var(--transition-smooth), border-color var(--transition-smooth);
+        }
+
+        .social-link:hover {
+            opacity: 0.6;
+            border-color: var(--color-primary);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 968px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .profile-image {
+                max-width: 280px;
+            }
+
+            .bio-section h1 {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
         }
 
         @media (max-width: 768px) {
-            nav {
-                padding: 20px 30px;
+            :root {
+                --header-height: 7.5rem;
+                --spacing-lg: 1.5rem;
             }
 
-            .nav-links {
-                gap: 25px;
+            .profile-image {
+                max-width: 240px;
             }
 
-            .nav-links a {
-                font-size: 11px;
+            .bio-section h1 {
+                font-size: 1.25rem;
             }
 
-            .about-container {
-                margin-top: 120px;
-                padding: 60px 30px 80px;
+            .bio-content p {
+                font-size: 0.95rem;
+                text-align: left;
             }
 
-            .about-image {
-                width: 250px;
-                height: 250px;
+            .highlights {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-sm);
             }
 
-            .about-text p {
-                font-size: 16px;
+            .highlight-item {
+                padding: var(--spacing-sm);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-image {
+                max-width: 180px;
             }
 
-            .visit-counter {
-                margin-top: 60px;
-                padding: 30px;
+            .bio-section h1 {
+                font-size: 1.125rem;
             }
 
-            .counter-number {
-                font-size: 36px;
+            .bio-content p {
+                font-size: 0.9rem;
+                line-height: 1.7;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: var(--spacing-md);
+            }
+
+            footer {
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
+        }
+
+        /* ============================================
+           ACCESSIBILITÀ
+           ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* ============================================
+           PRINT
+           ============================================ */
+        @media print {
+            header,
+            footer {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Gianluca Biasatti</div>
+    <header role="banner">
+        <nav role="navigation" aria-label="Navigazione principale">
+            <div class="logo">
+                Gianluca Biasatti
+                <div class="subtitle">Photography</div>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li>
+                    <a class="icon-link" href="https://www.instagram.com/gianluca_biasatti_photography/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Profilo Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.98 2.01A6.996 6.996 0 0 1 21.99 7v10a6.996 6.996 0 0 1-5.01 4.99H7.02A6.998 6.998 0 0 1 2 17V7a6.998 6.998 0 0 1 5.02-4.99H16.98zm0 2H7.02A5.003 5.003 0 0 0 3 7v10a5.003 5.003 0 0 0 4.02 4.99h9.96A5.003 5.003 0 0 0 21.99 17V7a5.003 5.003 0 0 0-5.01-4.99zm-4.98 3.2a5.79 5.79 0 1 1 0 11.58 5.79 5.79 0 0 1 0-11.58zm0 1.59a4.2 4.2 0 1 0 0 8.42 4.2 4.2 0 0 0 0-8.42zm6.07.73a1.44 1.44 0 1 1 0 2.88 1.44 1.44 0 0 1 0-2.88z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="icon-link" href="https://www.facebook.com/gianluca.biasatti" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Profilo Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 2H5a3 3 0 0 0-3 3v22a3 3 0 0 0 3 3h11V20h-3v-4h3v-3c0-3 2-4.67 4.67-4.67H25v4h-2c-1 0-1.33 0.33-1.33 1V16h3.33l-0.67 4H21v10h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="icon-link" id="mailIcon" href="#" title="Copia Email" aria-label="Copia indirizzo email" onclick="handleEmailCopy(event)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29 7H3c-1.1 0-2 0.9-2 2v14c0 1.1 0.9 2 2 2h26c1.1 0 2-0.9 2-2V9c0-1.1-0.9-2-2-2zm0 4.24-13 8.13-13-8.13V9l13 8 13-8v2.24z"/></svg>
+                    </a>
+                </li>
             </ul>
         </nav>
-        <div class="header-second-line"></div>
     </header>
 
-    <div class="about-container">
-        <h1 class="page-title">About Me</h1>
-        
-        <div class="about-content">
-            <div class="about-image">
-                <img src="https://res.cloudinary.com/dkrjsc0ok/image/upload/fotogian_kkyomi.png" alt="Gianluca Biasatti">
-            </div>
+    <main role="main">
+        <div class="about-container">
+            <!-- SEZIONE PROFILO -->
+            <section class="profile-section" aria-labelledby="profileHeading">
+                <div class="profile-image">
+                    <img src="https://lh3.googleusercontent.com/d/1YYmc6bVQ4X1kzQLRK_svFJS8TUik8_O8" alt="Gianluca Biasatti - Fotografia profilo" loading="lazy">
+                </div>
+                <div class="profile-meta">
+                    <h2 id="profileHeading">Gianluca Biasatti</h2>
+                    <p>Fotografo Professionista</p>
+                    <p>Nato nel 1967</p>
+                </div>
 
-            <div class="about-text">
-                <p>
-                    Sono nato nel 1967 e la mia più grande passione è la fotografia, che mi accompagna da molti anni come un modo per scoprire e raccontare il mondo. Amo catturare sia paesaggi mozzafiato che ritratti intensi, lasciando che ogni immagine esprima un'emozione o una storia.
-                </p>
-                <p>
-                    I miei viaggi in Madagascar, Islanda e Cina hanno profondamente ispirato il mio sguardo, aiutandomi a sviluppare uno stile personale e sensibile alla bellezza dei dettagli.
-                </p>
-                <p>
-                    Oltre alla fotografia, il tennis è una delle mie passioni più care: per me rappresenta un perfetto equilibrio tra la voglia di sfidare me stesso e il piacere di rilassarmi. Questa armonia si riflette anche nel mio modo di fotografare, dove tecnica e sensibilità si fondono per catturare momenti autentici e significativi.
-                </p>
-                <p>
-                    Continuo sempre a cercare nuovi luoghi da esplorare e nuove storie da raccontare, facendo della mia macchina fotografica il mio compagno di viaggio e strumento di espressione.
-                </p>
-            </div>
+                <div class="highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-label">Anni di Esperienza</div>
+                        <div class="highlight-value">30+</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-label">Paesi Visitati</div>
+                        <div class="highlight-value">3+</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-label">Passione</div>
+                        <div class="highlight-value">100%</div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="visit-counter">
-                <div class="counter-label">Visitatori Unici</div>
-                <div class="counter-number" id="visitCounter">0</div>
-            </div>
+            <!-- SEZIONE BIO -->
+            <section class="bio-section" aria-labelledby="bioHeading">
+                <h1 id="bioHeading">La Mia Storia</h1>
+                <div class="bio-content">
+                    <p>Sono nato nel 1967 e la mia più grande passione è la fotografia, che mi accompagna da molti anni come un modo per scoprire e raccontare il mondo. Amo catturare sia paesaggi mozzafiato che ritratti intensi, lasciando che ogni immagine esprima un'emozione o una storia.</p>
+
+                    <p>I miei viaggi in Madagascar, Islanda e Cina hanno profondamente ispirato il mio sguardo, aiutandomi a sviluppare uno stile personale e sensibile alla bellezza dei dettagli. Questi luoghi straordinari hanno modificato il mio modo di interpretare la luce, il paesaggio e la connessione umana attraverso la fotografia.</p>
+
+                    <p>Oltre alla fotografia, il tennis è una delle mie passioni più care: per me rappresenta un perfetto equilibrio tra la voglia di sfidare me stesso e il piacere di rilassarmi. Questa armonia si riflette anche nel mio modo di fotografare, dove tecnica e sensibilità si fondono per catturare momenti autentici e significativi.</p>
+
+                    <p>Continuo sempre a cercare nuovi luoghi da esplorare e nuove storie da raccontare, facendo della mia macchina fotografica il mio compagno di viaggio e strumento di espressione. Ogni scatto è un passo verso la scoperta di un nuovo aspetto del mondo e di me stesso.</p>
+                </div>
+
+                <div class="visits-counter">
+                    <p>Visitatori della pagina</p>
+                    <p class="counter-value">Visite: <span id="visitorCount">0</span></p>
+                </div>
+            </section>
         </div>
-    </div>
+    </main>
 
-    <footer>
-        <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Email</a>
-        </div>
+    <footer role="contentinfo">
         <p>&copy; 2025 Gianluca Biasatti Photography. All rights reserved.</p>
+        <a href="https://www.linkedin.com/in/marcobiasatti/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="Profilo LinkedIn">
+            MB
+        </a>
     </footer>
 
+    <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata!</div>
+
+    <style>
+        .copy-notify {
+            position: fixed;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
+            background: #222;
+            color: var(--color-primary);
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
+    </style>
+
     <script>
-        // Genera un ID univoco per il dispositivo
-        function generateDeviceID() {
-            return 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        /**
+         * CONFIGURAZIONE CENTRALIZZATA
+         */
+        const CONFIG = {
+            email: 'biasattig@libero.it',
+            notificationDuration: 1500,
+            storageKey: 'biasatti_about_visits'
+        };
+
+        /**
+         * UTILITY - Gestione email
+         */
+        function handleEmailCopy(e) {
+            e.preventDefault();
+            
+            navigator.clipboard.writeText(CONFIG.email)
+                .then(() => showNotification())
+                .catch(() => emailCopyFallback());
         }
 
-        // Inizializza il counter di visitatori unici
-        function initializeUniqueVisitorCounter() {
-            let deviceID = localStorage.getItem('deviceID');
-            let uniqueVisitors = parseInt(localStorage.getItem('uniqueVisitors')) || 0;
-            let visitedDevices = JSON.parse(localStorage.getItem('visitedDevices')) || [];
-
-            // Se è la prima visita, genera un ID univoco
-            if (!deviceID) {
-                deviceID = generateDeviceID();
-                localStorage.setItem('deviceID', deviceID);
+        /**
+         * Fallback per browser vecchi
+         */
+        function emailCopyFallback() {
+            const textarea = document.createElement('textarea');
+            textarea.value = CONFIG.email;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-999999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showNotification();
+            } catch (err) {
+                console.error('Errore copia email:', err);
+            } finally {
+                document.body.removeChild(textarea);
             }
-
-            // Se questo dispositivo non è ancora stato conteggiato
-            if (!visitedDevices.includes(deviceID)) {
-                visitedDevices.push(deviceID);
-                uniqueVisitors++;
-                localStorage.setItem('visitedDevices', JSON.stringify(visitedDevices));
-                localStorage.setItem('uniqueVisitors', uniqueVisitors);
-            }
-
-            // Aggiorna il display
-            document.getElementById('visitCounter').textContent = uniqueVisitors;
         }
 
-        window.addEventListener('load', initializeUniqueVisitorCounter);
+        /**
+         * Mostra notifica
+         */
+        function showNotification() {
+            const notify = document.getElementById('copyNotify');
+            notify.classList.add('show');
+            setTimeout(() => notify.classList.remove('show'), CONFIG.notificationDuration);
+        }
+
+        /**
+         * VISITOR COUNTER
+         */
+        function initVisitorCounter() {
+            try {
+                const stored = localStorage.getItem(CONFIG.storageKey) || '0';
+                let count = parseInt(stored, 10) || 0;
+                count++;
+                localStorage.setItem(CONFIG.storageKey, count.toString());
+                document.getElementById('visitorCount').textContent = count.toLocaleString('it-IT');
+            } catch (err) {
+                console.warn('Counter non disponibile:', err);
+                document.getElementById('visitorCount').textContent = '∞';
+            }
+        }
+
+        /**
+         * INIT - Al caricamento documento
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            initVisitorCounter();
+        });
     </script>
 </body>
 </html>

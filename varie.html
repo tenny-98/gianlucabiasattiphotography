@@ -695,13 +695,13 @@
 
         function nextPhoto() {
             currentIndex = (currentIndex + 1) % photos.length;
-            document.getElementById('lightboxImage').src = photos[currentIndex];
+            document.getElementById('lightboxImage').src = getHighResUrl(photos[currentIndex]);
             resetHideControlsTimer();
         }
 
         function prevPhoto() {
             currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-            document.getElementById('lightboxImage').src = photos[currentIndex];
+            document.getElementById('lightboxImage').src = getHighResUrl(photos[currentIndex]);
             resetHideControlsTimer();
         }
 

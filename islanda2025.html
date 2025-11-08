@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Islanda 2025 - Album Fotografico">
+    <meta name="description" content="Islanda 2025 - Collezione di fotografie professionali">
     <meta name="theme-color" content="#000">
     <meta property="og:title" content="Islanda 2025 - Gianluca Biasatti Photography">
-    <meta property="og:description" content="Album Islanda 2025">
+    <meta property="og:description" content="Album Islanda 2025 - Collezione di fotografie professionali">
     <meta property="og:type" content="website">
     <title>Islanda 2025 - Gianluca Biasatti Photography</title>
     
@@ -344,13 +344,14 @@
             padding: 0 1rem;
             transform: translateY(-50%);
             pointer-events: none;
+            transition: opacity 0.5s ease;
         }
 
         .nav-arrow {
             width: 3rem;
             height: 3rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--color-primary);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.3);
             color: var(--color-primary);
             cursor: pointer;
             display: flex;
@@ -363,7 +364,8 @@
         }
 
         .nav-arrow:hover {
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.6);
             transform: scale(1.15);
         }
 
@@ -669,11 +671,15 @@
         let currentIndex = 0;
         let hideControlsTimeout;
 
+        function getHighResUrl(url) {
+            return url.replace(/w=\d+/, 'w=2000');
+        }
+
         function openLightbox(index) {
             currentIndex = index;
             const lightbox = document.getElementById('lightbox');
             const image = document.getElementById('lightboxImage');
-            image.src = photos[currentIndex];
+            image.src = getHighResUrl(photos[currentIndex]);
             lightbox.classList.add('active');
             lightbox.classList.remove('hide-controls');
             document.body.style.overflow = 'hidden';
@@ -689,13 +695,13 @@
 
         function nextPhoto() {
             currentIndex = (currentIndex + 1) % photos.length;
-            document.getElementById('lightboxImage').src = photos[currentIndex];
+            document.getElementById('lightboxImage').src = getHighResUrl(photos[currentIndex]);
             resetHideControlsTimer();
         }
 
         function prevPhoto() {
             currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-            document.getElementById('lightboxImage').src = photos[currentIndex];
+            document.getElementById('lightboxImage').src = getHighResUrl(photos[currentIndex]);
             resetHideControlsTimer();
         }
 

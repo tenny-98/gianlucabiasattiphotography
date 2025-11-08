@@ -238,11 +238,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: #000;
             z-index: 2000;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding: 0;
         }
 
         .modal.active {
@@ -251,8 +251,11 @@
 
         .modal-content {
             position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-image {
@@ -263,14 +266,16 @@
 
         .modal-close {
             position: absolute;
-            top: -2.5rem;
-            right: 0;
+            top: 1.5rem;
+            right: 1.5rem;
             background: none;
             border: none;
             color: var(--color-primary);
-            font-size: 2rem;
+            font-size: 3rem;
             cursor: pointer;
             transition: opacity var(--transition-smooth);
+            line-height: 1;
+            z-index: 2001;
         }
 
         .modal-close:hover {

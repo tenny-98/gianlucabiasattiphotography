@@ -346,19 +346,6 @@
             margin-bottom: var(--spacing-md);
         }
 
-        .counter-section {
-            margin-top: var(--spacing-lg);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--color-border);
-        }
-
-        .counter-value {
-            font-size: 1.25rem;
-            color: var(--color-primary);
-            font-weight: 400;
-            letter-spacing: 0.0625rem;
-        }
-
         .social-link {
             display: inline-block;
             margin: 0 0.5rem;
@@ -379,6 +366,29 @@
         .social-link:hover {
             opacity: 0.6;
             border-color: var(--color-primary);
+        }
+
+        /* ============================================
+           PULSANTE RESET (ADMIN)
+           ============================================ */
+        #adminBtn {
+            background: none;
+            border: 1px solid #555;
+            color: #555;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+            padding: 0;
+        }
+
+        #adminBtn:hover {
+            opacity: 0.6;
         }
 
         /* ============================================
@@ -483,6 +493,25 @@
                 display: none;
             }
         }
+
+        .copy-notify {
+            position: fixed;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
+            background: #222;
+            color: var(--color-primary);
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -570,30 +599,10 @@
         <a href="https://www.linkedin.com/in/marcobiasatti/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="Profilo LinkedIn">
             MB
         </a>
+        <button id="adminBtn" onclick="promptResetCounter()" title="Admin">●</button>
     </footer>
 
     <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata!</div>
-
-    <style>
-        .copy-notify {
-            position: fixed;
-            top: calc(var(--header-height) + 1.875rem);
-            right: var(--spacing-lg);
-            background: #222;
-            color: var(--color-primary);
-            padding: var(--spacing-sm) 1rem;
-            border-radius: var(--border-radius);
-            font-size: 0.8125rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity var(--transition-smooth);
-            z-index: 2000;
-        }
-
-        .copy-notify.show {
-            opacity: 0.9;
-        }
-    </style>
 
     <script>
         /**
@@ -659,6 +668,31 @@
             } catch (err) {
                 console.warn('Counter non disponibile:', err);
                 document.getElementById('visitorCount').textContent = '∞';
+            }
+        }
+
+        /**
+         * RESET COUNTER
+         */
+        function resetCounter() {
+            try {
+                localStorage.setItem(CONFIG.storageKey, '0');
+                document.getElementById('visitorCount').textContent = '0';
+            } catch (err) {
+                console.error('Errore reset counter:', err);
+            }
+        }
+
+        /**
+         * PROMPT PASSWORD PER RESET
+         */
+        function promptResetCounter() {
+            const password = prompt('Inserisci password:');
+            if (password === 'marcogianluca') {
+                resetCounter();
+                alert('Counter azzerato!');
+            } else if (password !== null) {
+                alert('Password errata!');
             }
         }
 

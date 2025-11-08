@@ -1,8 +1,0 @@
-{
-  "buildCommand": "npm install cloudinary",
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
-}

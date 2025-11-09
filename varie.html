@@ -571,26 +571,7 @@
     <!-- Gallery -->
     <main class="gallery-container">
         <h1 class="page-title">Varie</h1>
-        <div class="gallery-grid">
-            <div class="photo-card" data-index="0" onclick="openLightbox(0)">
-                <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/strada-neve_t9q0uj.jpg" alt="Foto 1" loading="lazy">
-            </div>
-            <div class="photo-card" data-index="1" onclick="openLightbox(1)">
-                <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/strada-india_amrp6a.jpg" alt="Foto 2" loading="lazy">
-            </div>
-            <div class="photo-card" data-index="2" onclick="openLightbox(2)">
-                <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/promontorio-mare_kumr6u.jpg" alt="Foto 3" loading="lazy">
-            </div>
-            <div class="photo-card" data-index="3" onclick="openLightbox(3)">
-                <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/ghiaccio_faoaec.jpg" alt="Foto 4" loading="lazy">
-            </div>
-            <div class="photo-card" data-index="4" onclick="openLightbox(4)">
-                <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/ponte-mare_ltusfu.jpg" alt="Foto 5" loading="lazy">
-            </div>
-            <div class="photo-card" data-index="5" onclick="openLightbox(5)">
-                <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/donna-alberi_britsl.jpg" alt="Foto 6" loading="lazy">
-            </div>
-        </div>
+        <div class="gallery-grid" id="gallery"></div>
     </main>
 
     <!-- Lightbox -->
@@ -617,6 +598,39 @@
     </footer>
 
     <script>
+        /**
+         * ARRAY DI LINK - MODIFICA QUI!
+         */
+        const photoLinks = [
+            'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/strada-neve_t9q0uj.jpg',
+            'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/strada-india_amrp6a.jpg',
+            'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/promontorio-mare_kumr6u.jpg',
+            'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/ghiaccio_faoaec.jpg',
+            'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/ponte-mare_ltusfu.jpg',
+            'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/donna-alberi_britsl.jpg'
+        ];
+
+        /**
+         * Genera le photo-card automaticamente
+         */
+        function generateGallery() {
+            const gallery = document.getElementById('gallery');
+            photoLinks.forEach((link, index) => {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'photo-card';
+                photoCard.setAttribute('data-index', index);
+                photoCard.onclick = () => openLightbox(index);
+                
+                const img = document.createElement('img');
+                img.src = link;
+                img.alt = `Foto ${index + 1}`;
+                img.loading = 'lazy';
+                
+                photoCard.appendChild(img);
+                gallery.appendChild(photoCard);
+            });
+        }
+
         /**
          * CONFIGURAZIONE CENTRALIZZATA
          */
@@ -667,7 +681,6 @@
         /**
          * LIGHTBOX GALLERY
          */
-        const photos = Array.from(document.querySelectorAll('.photo-card img')).map(img => img.src);
         let currentIndex = 0;
         let hideControlsTimeout;
 
@@ -681,7 +694,7 @@
             currentIndex = index;
             const lightbox = document.getElementById('lightbox');
             const image = document.getElementById('lightboxImage');
-            image.src = getHighResUrl(photos[currentIndex]);
+            image.src = getHighResUrl(photoLinks[currentIndex]);
             lightbox.classList.add('active');
             lightbox.classList.remove('hide-controls');
             document.body.style.overflow = 'hidden';
@@ -696,14 +709,14 @@
         }
 
         function nextPhoto() {
-            currentIndex = (currentIndex + 1) % photos.length;
-            document.getElementById('lightboxImage').src = getHighResUrl(photos[currentIndex]);
+            currentIndex = (currentIndex + 1) % photoLinks.length;
+            document.getElementById('lightboxImage').src = getHighResUrl(photoLinks[currentIndex]);
             resetHideControlsTimer();
         }
 
         function prevPhoto() {
-            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-            document.getElementById('lightboxImage').src = getHighResUrl(photos[currentIndex]);
+            currentIndex = (currentIndex - 1 + photoLinks.length) % photoLinks.length;
+            document.getElementById('lightboxImage').src = getHighResUrl(photoLinks[currentIndex]);
             resetHideControlsTimer();
         }
 
@@ -751,6 +764,9 @@
         document.getElementById('lightbox').addEventListener('click', (e) => {
             if (e.target.id === 'lightbox') closeLightbox();
         });
+
+        // Genera la galleria al caricamento
+        generateGallery();
     </script>
 </body>
 </html>

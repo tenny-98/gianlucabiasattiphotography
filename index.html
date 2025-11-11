@@ -56,6 +56,7 @@
         html {
             font-size: var(--font-size-base);
             scroll-behavior: smooth;
+            height: 100%;
         }
 
         body {
@@ -64,6 +65,9 @@
             color: var(--color-primary);
             line-height: var(--line-height-base);
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* ============================================
@@ -76,6 +80,7 @@
             background: var(--color-bg);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
+            flex-shrink: 0;
         }
 
         nav {
@@ -186,11 +191,12 @@
            SLIDESHOW PRINCIPALE
            ============================================ */
         .slideshow-container {
+            flex: 1;
             margin-top: var(--header-height);
-            height: calc(100vh - var(--header-height));
             position: relative;
             overflow: hidden;
             background: var(--color-bg);
+            min-height: calc(100vh - var(--header-height) - 15rem);
         }
 
         .slide {
@@ -310,6 +316,8 @@
             padding: var(--spacing-xl) var(--spacing-lg);
             text-align: center;
             border-top: 1px solid var(--color-border);
+            flex-shrink: 0;
+            margin-top: auto;
         }
 
         footer p {
@@ -387,8 +395,8 @@
                 height: 0.375rem;
             }
 
-            .slideshow-container:hover .slide-controls {
-                opacity: 1;
+            .slideshow-container {
+                min-height: calc(100vh - var(--header-height) - 12rem);
             }
 
             .copy-notify {
@@ -439,6 +447,10 @@
             .dot {
                 width: 0.3125rem;
                 height: 0.3125rem;
+            }
+
+            .slideshow-container {
+                min-height: calc(100vh - var(--header-height) - 10rem);
             }
         }
 

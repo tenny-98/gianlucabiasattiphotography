@@ -35,7 +35,7 @@
             --spacing-xl: 3rem;
             
             /* Layout */
-            --header-height: 12rem;
+            --header-height: 5.625rem;
             --max-width: 1400px;
             --border-radius: 0.25rem;
             
@@ -434,6 +434,28 @@
         }
 
         /* ============================================
+           NOTIFICHE
+           ============================================ */
+        .copy-notify {
+            position: fixed;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
+            background: #222;
+            color: var(--color-primary);
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
+
+        /* ============================================
            RESPONSIVE DESIGN
            ============================================ */
         @media (max-width: 968px) {
@@ -458,7 +480,6 @@
         @media (max-width: 768px) {
             :root {
                 --header-height: 7.5rem;
-                --spacing-lg: 1.5rem;
             }
 
             .profile-image {
@@ -534,25 +555,6 @@
             footer {
                 display: none;
             }
-        }
-
-        .copy-notify {
-            position: fixed;
-            top: calc(var(--header-height) + 1.875rem);
-            right: var(--spacing-lg);
-            background: #222;
-            color: var(--color-primary);
-            padding: var(--spacing-sm) 1rem;
-            border-radius: var(--border-radius);
-            font-size: 0.8125rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity var(--transition-smooth);
-            z-index: 2000;
-        }
-
-        .copy-notify.show {
-            opacity: 0.9;
         }
     </style>
 </head>
@@ -764,8 +766,8 @@
         });
 
         document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-});
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>

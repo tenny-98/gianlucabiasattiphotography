@@ -329,6 +329,49 @@
         }
 
         /* ============================================
+           SEZIONE ATTREZZATURA
+           ============================================ */
+        .equipment-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .equipment-section h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .equipment-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .equipment-list li {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            letter-spacing: 0.0625rem;
+            padding-left: var(--spacing-md);
+            position: relative;
+        }
+
+        .equipment-list li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: var(--color-text-secondary);
+        }
+
+        /* ============================================
            FOOTER
            ============================================ */
         footer {
@@ -579,7 +622,7 @@
                 <div class="bio-content">
                     <p>Sono nato nel 1967 e vivo a Udine, in Friuli Venezia Giulia.</p>
 
-                    <p>La mia più grande passione è la fotografia, che mi accompagna da molti anni e mi da modo di scoprire e raccontare il mondo durante i miei viaggi. Amo catturare sia paesaggi mozzafiato che ritratti intensi, lasciando che ogni immagine esprima un’emozione o una storia.</p>
+                    <p>La mia più grande passione è la fotografia, che mi accompagna da molti anni e mi da modo di scoprire e raccontare il mondo durante i miei viaggi. Amo catturare sia paesaggi mozzafiato che ritratti intensi, lasciando che ogni immagine esprima un'emozione o una storia.</p>
 
                     <p>I miei viaggi in Asia, nel nord Europa e in Africa, hanno profondamente ispirato il mio sguardo, aiutandomi a sviluppare uno stile personale e sensibile alla bellezza dei dettagli. Questi luoghi straordinari hanno modificato il modo di interpretare la luce, il paesaggio e la connessione umana attraverso la fotografia.</p>
 
@@ -592,6 +635,17 @@
                     <p>Talvolta produco delle storie, dei portfoli, in ambiti e progetti che mi possono interessare per il loro lato umano.</p>
 
                     <p>Buona luce a tutti !!!!</p>
+                </div>
+
+                <!-- SEZIONE ATTREZZATURA -->
+                <div class="equipment-section">
+                    <h3>Attrezzatura</h3>
+                    <ul class="equipment-list">
+                        <li>Nikon Z7</li>
+                        <li>Nikkor Z 14-24 f2.8</li>
+                        <li>Nikkor Z 24-70 f2.8</li>
+                        <li>Nikkor Z 70-200 f2.8</li>
+                    </ul>
                 </div>
 
                 <div class="visits-counter">

@@ -164,6 +164,28 @@
         }
 
         /* ============================================
+           NOTIFICHE
+           ============================================ */
+        .copy-notify {
+            position: fixed;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
+            background: #222;
+            color: var(--color-primary);
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
+
+        /* ============================================
            BREADCRUMB
            ============================================ */
         .breadcrumb {
@@ -358,6 +380,13 @@
                 max-width: 100%;
             }
 
+            .copy-notify {
+                top: calc(var(--header-height) + 0.9375rem);
+                right: 0.9375rem;
+                left: 0.9375rem;
+                width: auto;
+            }
+
             footer {
                 padding: 2.5rem var(--spacing-md);
             }
@@ -415,6 +444,8 @@
     </style>
 </head>
 <body>
+    <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata!</div>
+
     <!-- Header -->
     <header role="banner">
         <nav role="navigation" aria-label="Navigazione principale">
@@ -486,7 +517,7 @@
         };
 
         /**
-         * Copia email negli appunti
+         * UTILITY - Gestione email
          */
         function handleEmailCopy(e) {
             e.preventDefault();
@@ -521,12 +552,14 @@
          * Mostra notifica
          */
         function showNotification() {
-            console.log('Email copiata:', CONFIG.email);
+            const notify = document.getElementById('copyNotify');
+            notify.classList.add('show');
+            setTimeout(() => notify.classList.remove('show'), CONFIG.notificationDuration);
         }
-        
+
         document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-});
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>

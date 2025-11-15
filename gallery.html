@@ -150,6 +150,28 @@
             fill: var(--color-hover);
         }
 
+        /* ============================================
+           NOTIFICHE
+           ============================================ */
+        .copy-notify {
+            position: fixed;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
+            background: #222;
+            color: var(--color-primary);
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
+
         .breadcrumb {
             margin-top: var(--header-height);
             padding: var(--spacing-lg) var(--spacing-lg) 0;
@@ -336,6 +358,13 @@
                 gap: 1.5rem;
             }
 
+            .copy-notify {
+                top: calc(var(--header-height) + 0.9375rem);
+                right: 0.9375rem;
+                left: 0.9375rem;
+                width: auto;
+            }
+
             footer {
                 padding: 2.5rem var(--spacing-md);
             }
@@ -387,6 +416,8 @@
     </style>
 </head>
 <body>
+    <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata!</div>
+
     <header role="banner">
         <nav role="navigation" aria-label="Navigazione principale">
             <div class="logo">
@@ -463,18 +494,28 @@
     </footer>
 
     <script>
+        /**
+         * CONFIGURAZIONE CENTRALIZZATA
+         */
         const CONFIG = {
             email: 'biasattig@libero.it',
             notificationDuration: 1500
         };
 
+        /**
+         * UTILITY - Gestione email
+         */
         function handleEmailCopy(e) {
             e.preventDefault();
+            
             navigator.clipboard.writeText(CONFIG.email)
                 .then(() => showNotification())
                 .catch(() => emailCopyFallback());
         }
 
+        /**
+         * Fallback per browser vecchi
+         */
         function emailCopyFallback() {
             const textarea = document.createElement('textarea');
             textarea.value = CONFIG.email;
@@ -482,6 +523,7 @@
             textarea.style.left = '-999999px';
             document.body.appendChild(textarea);
             textarea.select();
+            
             try {
                 document.execCommand('copy');
                 showNotification();
@@ -492,13 +534,18 @@
             }
         }
 
+        /**
+         * Mostra notifica
+         */
         function showNotification() {
-            console.log('Email copiata:', CONFIG.email);
+            const notify = document.getElementById('copyNotify');
+            notify.classList.add('show');
+            setTimeout(() => notify.classList.remove('show'), CONFIG.notificationDuration);
         }
 
         document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-});
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>

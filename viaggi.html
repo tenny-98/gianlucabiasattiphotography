@@ -164,6 +164,28 @@
         }
 
         /* ============================================
+           NOTIFICHE
+           ============================================ */
+        .copy-notify {
+            position: fixed;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
+            background: #222;
+            color: var(--color-primary);
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
+
+        /* ============================================
            BREADCRUMB
            ============================================ */
         .breadcrumb {
@@ -356,6 +378,13 @@
                 gap: 1.5rem;
             }
 
+            .copy-notify {
+                top: calc(var(--header-height) + 0.9375rem);
+                right: 0.9375rem;
+                left: 0.9375rem;
+                width: auto;
+            }
+
             footer {
                 padding: 2.5rem var(--spacing-md);
             }
@@ -413,6 +442,8 @@
     </style>
 </head>
 <body>
+    <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata!</div>
+
     <!-- Header -->
     <header role="banner">
         <nav role="navigation" aria-label="Navigazione principale">
@@ -457,11 +488,83 @@
         <h1 class="page-title">Viaggi</h1>
         <div class="gallery-grid">
             <!-- Riga 1 -->
+            <a href="islanda2025.html" class="album-card" title="Accedi all'album Album 1">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Album 1" loading="lazy">
+                </div>
+                <div class="album-title">Islanda 2025</div>
+            </a>
             <a href="giappone2025.html" class="album-card" title="Accedi all'album Album 2">
                 <div class="album-image-container">
                     <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80" alt="Album 2" loading="lazy">
                 </div>
                 <div class="album-title">Giappone 2025</div>
+            </a>
+            <a href="viaggi-album3.html" class="album-card" title="Accedi all'album Album 3">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80" alt="Album 3" loading="lazy">
+                </div>
+                <div class="album-title">Album 3</div>
+            </a>
+
+            <!-- Riga 2 -->
+            <a href="viaggi-album4.html" class="album-card" title="Accedi all'album Album 4">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Album 4" loading="lazy">
+                </div>
+                <div class="album-title">Album 4</div>
+            </a>
+            <a href="viaggi-album5.html" class="album-card" title="Accedi all'album Album 5">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=600&q=80" alt="Album 5" loading="lazy">
+                </div>
+                <div class="album-title">Album 5</div>
+            </a>
+            <a href="viaggi-album6.html" class="album-card" title="Accedi all'album Album 6">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=600&q=80" alt="Album 6" loading="lazy">
+                </div>
+                <div class="album-title">Album 6</div>
+            </a>
+
+            <!-- Riga 3 -->
+            <a href="viaggi-album7.html" class="album-card" title="Accedi all'album Album 7">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Album 7" loading="lazy">
+                </div>
+                <div class="album-title">Album 7</div>
+            </a>
+            <a href="viaggi-album8.html" class="album-card" title="Accedi all'album Album 8">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80" alt="Album 8" loading="lazy">
+                </div>
+                <div class="album-title">Album 8</div>
+            </a>
+            <a href="viaggi-album9.html" class="album-card" title="Accedi all'album Album 9">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&q=80" alt="Album 9" loading="lazy">
+                </div>
+                <div class="album-title">Album 9</div>
+            </a>
+
+            <!-- Riga 4 -->
+            <a href="viaggi-album10.html" class="album-card" title="Accedi all'album Album 10">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80" alt="Album 10" loading="lazy">
+                </div>
+                <div class="album-title">Album 10</div>
+            </a>
+            <a href="viaggi-album11.html" class="album-card" title="Accedi all'album Album 11">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1533156452874-3c3d5fa63e46?w=600&q=80" alt="Album 11" loading="lazy">
+                </div>
+                <div class="album-title">Album 11</div>
+            </a>
+            <a href="viaggi-album12.html" class="album-card" title="Accedi all'album Album 12">
+                <div class="album-image-container">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Album 12" loading="lazy">
+                </div>
+                <div class="album-title">Album 12</div>
             </a>
         </div>
     </main>
@@ -484,7 +587,7 @@
         };
 
         /**
-         * Copia email negli appunti
+         * UTILITY - Gestione email
          */
         function handleEmailCopy(e) {
             e.preventDefault();
@@ -519,12 +622,14 @@
          * Mostra notifica
          */
         function showNotification() {
-            console.log('Email copiata:', CONFIG.email);
+            const notify = document.getElementById('copyNotify');
+            notify.classList.add('show');
+            setTimeout(() => notify.classList.remove('show'), CONFIG.notificationDuration);
         }
 
         document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-});
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>

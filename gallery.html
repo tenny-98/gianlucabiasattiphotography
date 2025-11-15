@@ -355,9 +355,44 @@
         padding: var(--spacing-lg) 1.25rem 5rem;
     }
 
+    .copy-notify {
+        top: calc(var(--header-height) + 0.9375rem);
+        right: 0.9375rem;
+        left: 0.9375rem;
+        width: auto;
+    }
+
+    footer {
+        padding: 2.5rem var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+
+    .nav-links {
+        gap: 0.75rem;
+    }
+
+    .nav-links a {
+        font-size: 0.5625rem;
+    }
+
+    .breadcrumb {
+        padding: var(--spacing-sm) var(--spacing-sm) 0;
+        font-size: 0.6rem;
+    }
+
+    .gallery-container {
+        padding: 1.5rem 1rem 3rem;
+    }
+
+    .page-title {
+        margin: var(--spacing-lg) 0;
+        font-size: 0.75rem;
     }
 
     .copy-notify {
@@ -372,29 +407,44 @@
     }
 }
         @media (max-width: 480px) {
-            .nav-links {
-                gap: 0.75rem;
-            }
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 
-            .nav-links a {
-                font-size: 0.5625rem;
-            }
+    .nav-links {
+        gap: 0.75rem;
+    }
 
-            .breadcrumb {
-                padding: var(--spacing-sm) var(--spacing-sm) 0;
-                font-size: 0.6rem;
-            }
+    .nav-links a {
+        font-size: 0.5625rem;
+    }
 
-            .gallery-container {
-                padding: 1.5rem 1rem 3rem;
-            }
+    .breadcrumb {
+        padding: var(--spacing-sm) var(--spacing-sm) 0;
+        font-size: 0.6rem;
+    }
 
-            .page-title {
-                margin: var(--spacing-lg) 0;
-                font-size: 0.75rem;
-            }
-        }
+    .gallery-container {
+        padding: 1.5rem 1rem 3rem;
+    }
 
+    .page-title {
+        margin: var(--spacing-lg) 0;
+        font-size: 0.75rem;
+    }
+
+    .copy-notify {
+        top: calc(var(--header-height) + 0.9375rem);
+        right: 0.9375rem;
+        left: 0.9375rem;
+        width: auto;
+    }
+
+    footer {
+        padding: 2.5rem var(--spacing-md);
+    }
+}
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;

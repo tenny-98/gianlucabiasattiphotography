@@ -164,6 +164,28 @@
         }
 
         /* ============================================
+           NOTIFICHE
+           ============================================ */
+        .copy-notify {
+            position: fixed;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
+            background: #222;
+            color: var(--color-primary);
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
+
+        /* ============================================
            BREADCRUMB
            ============================================ */
         .breadcrumb {
@@ -527,6 +549,9 @@
     </style>
 </head>
 <body>
+    <!-- 1. NOTIFICA DI COPIA EMAIL -->
+    <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata! biasattig@libero.it</div>
+
     <!-- Header -->
     <header role="banner">
         <nav role="navigation" aria-label="Navigazione principale">
@@ -548,6 +573,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 2H5a3 3 0 0 0-3 3v22a3 3 0 0 0 3 3h11V20h-3v-4h3v-3c0-3 2-4.67 4.67-4.67H25v4h-2c-1 0-1.33 0.33-1.33 1V16h3.33l-0.67 4H21v10h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"/></svg>
                     </a>
                 </li>
+                <!-- 2. LINK EMAIL NEL MENU -->
                 <li>
                     <a class="icon-link" id="mailIcon" href="#" title="Copia Email" aria-label="Copia indirizzo email" onclick="handleEmailCopy(event)">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29 7H3c-1.1 0-2 0.9-2 2v14c0 1.1 0.9 2 2 2h26c1.1 0 2-0.9 2-2V9c0-1.1-0.9-2-2-2zm0 4.24-13 8.13-13-8.13V9l13 8 13-8v2.24z"/></svg>
@@ -603,7 +629,55 @@
          */
         const photoLinks = [
             'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-001.jpg',
-
+            'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-002.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-003.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-004.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-005.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-006.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-007.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-008.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-009.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-010.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-011.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-012.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-013.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-014.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-015.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-016.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-017.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-018.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-019.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-020.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-021.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-022.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-023.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-024.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-025.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-026.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-027.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-028.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-029.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-030.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-031.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-032.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-033.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-034.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-035.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-036.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-037.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-038.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-039.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-040.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-041.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-042.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-043.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-044.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-045.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-046.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-047.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-048.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-049.jpg',
+'https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/giappone2025-050.jpg',
         ];
 
         /**
@@ -628,7 +702,7 @@
         }
 
         /**
-         * CONFIGURAZIONE CENTRALIZZATA
+         * 5. CONFIGURAZIONE CENTRALIZZATA
          */
         const CONFIG = {
             email: 'biasattig@libero.it',
@@ -636,7 +710,7 @@
         };
 
         /**
-         * Copia email negli appunti
+         * 6. FUNZIONE PRINCIPALE - COPIA EMAIL
          */
         function handleEmailCopy(e) {
             e.preventDefault();
@@ -647,7 +721,7 @@
         }
 
         /**
-         * Fallback per browser vecchi
+         * 7. FALLBACK PER BROWSER VECCHI
          */
         function emailCopyFallback() {
             const textarea = document.createElement('textarea');
@@ -668,10 +742,12 @@
         }
 
         /**
-         * Mostra notifica
+         * 8. MOSTRA NOTIFICA
          */
         function showNotification() {
-            console.log('Email copiata:', CONFIG.email);
+            const notify = document.getElementById('copyNotify');
+            notify.classList.add('show');
+            setTimeout(() => notify.classList.remove('show'), CONFIG.notificationDuration);
         }
 
         /**
@@ -765,8 +841,8 @@
         generateGallery();
 
         document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-});
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>

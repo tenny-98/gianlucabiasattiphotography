@@ -187,31 +187,20 @@
         /* ============================================
            SLIDESHOW PRINCIPALE
            ============================================ */
-    .slideshow-container {
-    margin-top: var(--header-height);
-    padding-top: 0; /* eliminiamo il padding extra */
-    position: relative;
-    background: var(--color-bg);
-    width: 100%;
-    height: calc(100vh - var(--header-height)); /* altezza = viewport - header */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .slideshow-container {
+            margin-top: var(--header-height);
+            padding-top: var(--header-height);
+            position: relative;
+            background: var(--color-bg);
+            width: 100%;
+        }
 
-.slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* questa è la chiave! */
-    display: block;
-}
+        .slide {
+            display: none;
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
 
         .slide.active {
             display: block;
@@ -221,6 +210,13 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
         /* ============================================

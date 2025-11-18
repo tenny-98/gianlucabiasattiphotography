@@ -10,7 +10,7 @@
     <meta property="og:type" content="website">
     <title>About - Gianluca Biasatti Photography</title>
 
-    <meta name="version" content="2025-11-17-countapi">
+    <meta name="version" content="2025-11-17-abacus">
     
     <style>
         /* ============================================
@@ -413,29 +413,6 @@
         }
 
         /* ============================================
-           PULSANTE RESET (ADMIN)
-           ============================================ */
-        #adminBtn {
-            background: none;
-            border: 1px solid #555;
-            color: #555;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 50%;
-            font-size: 1rem;
-            cursor: pointer;
-            opacity: 0.3;
-            transition: opacity 0.3s ease;
-            display: block;
-            margin: 2rem auto 0;
-            padding: 0;
-        }
-
-        #adminBtn:hover {
-            opacity: 0.6;
-        }
-
-        /* ============================================
            NOTIFICHE
            ============================================ */
         .copy-notify {
@@ -668,7 +645,6 @@
         <a href="https://www.linkedin.com/in/marcobiasatti/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="Profilo LinkedIn">
             MB
         </a>
-        <button id="adminBtn" onclick="promptResetCounter()" title="Admin">●</button>
     </footer>
 
     <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata! biasattig@libero.it</div>
@@ -680,9 +656,9 @@
         const CONFIG = {
             email: 'biasattig@libero.it',
             notificationDuration: 1500,
-            counterNamespace: 'gianluca-biasatti-photography',
+            counterNamespace: 'gianlucabiasatti.com',
             counterKey: 'about-visits',
-            counterApiUrl: 'https://api.countapi.xyz'
+            counterApiUrl: 'https://abacus.jasoncameron.dev'
         };
 
         /**
@@ -727,18 +703,18 @@
         }
 
         /**
-         * VISITOR COUNTER GLOBALE (CountAPI)
+         * VISITOR COUNTER GLOBALE (Abacus API)
          */
         async function initVisitorCounter() {
             const countElement = document.getElementById('visitorCount');
             
             try {
-                // Incrementa e ottieni il counter globale
+                // Incrementa e ottieni il counter globale con Abacus
                 const response = await fetch(
                     `${CONFIG.counterApiUrl}/hit/${CONFIG.counterNamespace}/${CONFIG.counterKey}`
                 );
                 
-                if (!response.ok) throw new Error('CountAPI non disponibile');
+                if (!response.ok) throw new Error('Abacus API non disponibile');
                 
                 const data = await response.json();
                 countElement.textContent = data.value.toLocaleString('it-IT');
@@ -746,41 +722,6 @@
             } catch (err) {
                 console.warn('Counter globale non disponibile:', err);
                 countElement.textContent = '---';
-            }
-        }
-
-        /**
-         * RESET COUNTER (solo per admin)
-         */
-        async function resetCounter() {
-            try {
-                const response = await fetch(
-                    `${CONFIG.counterApiUrl}/set/${CONFIG.counterNamespace}/${CONFIG.counterKey}?value=0`
-                );
-                
-                if (!response.ok) throw new Error('Reset fallito');
-                
-                const data = await response.json();
-                document.getElementById('visitorCount').textContent = '0';
-                return true;
-                
-            } catch (err) {
-                console.error('Errore reset counter:', err);
-                alert('Errore durante il reset del counter');
-                return false;
-            }
-        }
-
-        /**
-         * PROMPT PASSWORD PER RESET
-         */
-        async function promptResetCounter() {
-            const password = prompt('Inserisci password:');
-            if (password === 'marcogianluca') {
-                const success = await resetCounter();
-                if (success) alert('Counter azzerato!');
-            } else if (password !== null) {
-                alert('Password errata!');
             }
         }
 

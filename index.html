@@ -9,181 +9,13 @@
     <meta property="og:description" content="Fotografia professionista di paesaggi e natura">
     <meta property="og:type" content="website">
     <title>Gianluca Biasatti Travel Photographer - Home</title>
-
-    <meta name="version" content="2025-11-16">
+    <meta name="version" content="2025-11-20">
     
+    <!-- CSS COMUNE (shared) -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- CSS SPECIFICO PER SLIDESHOW (solo questa pagina) -->
     <style>
-        /* ============================================
-           VARIABILI E CONFIGURAZIONE GLOBALE
-           ============================================ */
-        :root {
-            /* Colori */
-            --color-primary: #FFD700;
-            --color-bg: #000;
-            --color-text-secondary: rgba(180, 180, 180, 0.7);
-            --color-border: rgba(255, 215, 0, 0.1);
-            --color-hover: #fffbe0;
-            
-            /* Tipografia */
-            --font-primary: Georgia, serif;
-            --font-size-base: 16px;
-            --line-height-base: 1.6;
-            
-            /* Spacing */
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
-            
-            /* Layout */
-            --header-height: 5.625rem; /* 90px */
-            --max-width: 1400px;
-            --border-radius: 0.25rem;
-            
-            /* Animazioni */
-            --transition-smooth: 0.3s ease;
-            --transition-fast: 0.15s ease;
-        }
-
-        /* ============================================
-           RESET E FONDAMENTA
-           ============================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            font-size: var(--font-size-base);
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-primary);
-            background: var(--color-bg);
-            color: var(--color-primary);
-            line-height: var(--line-height-base);
-            overflow-x: hidden;
-        }
-
-        /* ============================================
-           HEADER E NAVIGAZIONE
-           ============================================ */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--color-bg);
-            border-bottom: 1px solid var(--color-border);
-            z-index: 1000;
-        }
-
-        nav {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0.75rem var(--spacing-lg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .logo {
-            font-size: clamp(1.25rem, 5vw, 1.75rem);
-            font-weight: 400;
-            letter-spacing: 0.125rem;
-            text-transform: uppercase;
-            text-align: center;
-            width: 100%;
-            padding-bottom: var(--spacing-sm);
-            position: relative;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -0.625rem;
-            left: 50%;
-            width: 100vw;
-            height: 1px;
-            background: var(--color-primary);
-            transform: translateX(-50%);
-        }
-
-        .logo .subtitle {
-            font-size: clamp(0.875rem, 4vw, 1.25rem);
-            font-weight: 300;
-            letter-spacing: 0.25rem;
-            text-transform: uppercase;
-            margin-top: 0.125rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: clamp(0.9375rem, 4vw, 1.75rem);
-            list-style: none;
-            padding: var(--spacing-sm) 0;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-links a,
-        .icon-link {
-            color: var(--color-primary);
-            text-decoration: none;
-            font-size: 0.6875rem;
-            font-weight: 300;
-            letter-spacing: 0.0625rem;
-            text-transform: uppercase;
-            transition: opacity var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-            white-space: nowrap;
-        }
-
-        .nav-links a:hover,
-        .icon-link:hover {
-            opacity: 0.7;
-        }
-
-        .icon-link svg {
-            width: 1.125rem;
-            height: 1.125rem;
-            fill: var(--color-primary);
-            transition: fill var(--transition-smooth);
-        }
-
-        .icon-link:hover svg {
-            fill: var(--color-hover);
-        }
-
-        /* ============================================
-           NOTIFICHE
-           ============================================ */
-        .copy-notify {
-            position: fixed;
-            top: calc(var(--header-height) + 1.875rem);
-            right: var(--spacing-lg);
-            background: #222;
-            color: var(--color-primary);
-            padding: var(--spacing-sm) 1rem;
-            border-radius: var(--border-radius);
-            font-size: 0.8125rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity var(--transition-smooth);
-            z-index: 2000;
-        }
-
-        .copy-notify.show {
-            opacity: 0.9;
-        }
-
         /* ============================================
            SLIDESHOW PRINCIPALE
            ============================================ */
@@ -303,66 +135,9 @@
         }
 
         /* ============================================
-           FOOTER
-           ============================================ */
-        footer {
-            background: var(--color-bg);
-            padding: var(--spacing-xl) var(--spacing-lg);
-            text-align: center;
-            border-top: 1px solid var(--color-border);
-        }
-
-        footer p {
-            font-size: 0.6875rem;
-            letter-spacing: 0.0625rem;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .social-link {
-            display: inline-block;
-            margin: 0 0.5rem;
-            width: 2rem;
-            height: 2rem;
-            border: 1px solid #555;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 0.625rem;
-            color: #555;
-            text-align: center;
-            line-height: 2rem;
-            text-decoration: none;
-            opacity: 0.3;
-            transition: opacity var(--transition-smooth), border-color var(--transition-smooth);
-        }
-
-        .social-link:hover {
-            opacity: 0.6;
-            border-color: var(--color-primary);
-        }
-
-        /* ============================================
-           RESPONSIVE DESIGN
+           RESPONSIVE
            ============================================ */
         @media (max-width: 768px) {
-            :root {
-                --header-height: 7.5rem; /* 120px */
-                --spacing-lg: 1.5rem;
-            }
-
-            nav {
-                padding: var(--spacing-md);
-            }
-
-            .nav-links {
-                gap: 0.9375rem;
-                padding: 0.75rem 0;
-            }
-
-            .nav-links a {
-                font-size: 0.625rem;
-            }
-
             .slide-btn {
                 width: 2.5rem;
                 height: 2.5rem;
@@ -386,33 +161,9 @@
                 width: 0.375rem;
                 height: 0.375rem;
             }
-
-            .copy-notify {
-                top: calc(var(--header-height) + 0.9375rem);
-                right: 0.9375rem;
-                left: 0.9375rem;
-                width: auto;
-            }
-
-            footer {
-                padding: 2.5rem var(--spacing-md);
-            }
         }
 
         @media (max-width: 480px) {
-            .nav-links {
-                gap: 0.75rem;
-            }
-
-            .nav-links a {
-                font-size: 0.5625rem;
-            }
-
-            .icon-link svg {
-                width: 1rem;
-                height: 1rem;
-            }
-
             .slide-btn {
                 width: 2.25rem;
                 height: 2.25rem;
@@ -438,27 +189,7 @@
             }
         }
 
-        /* ============================================
-           ACCESSIBILITÀ
-           ============================================ */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            html {
-                scroll-behavior: auto;
-            }
-        }
-
-        /* ============================================
-           PRINT
-           ============================================ */
         @media print {
-            header,
-            footer,
             .slide-controls {
                 display: none;
             }
@@ -470,37 +201,8 @@
     </style>
 </head>
 <body>
-    <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata! biasattig@gmail.com </div>
-
-    <header role="banner">
-        <nav role="navigation" aria-label="Navigazione principale">
-            <div class="logo">
-                Gianluca Biasatti
-                <div class="subtitle">Travel Photographer</div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-                <li>
-                    <a class="icon-link" href="https://www.instagram.com/gianluca_biasatti_photography/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Profilo Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.98 2.01A6.996 6.996 0 0 1 21.99 7v10a6.996 6.996 0 0 1-5.01 4.99H7.02A6.998 6.998 0 0 1 2 17V7a6.998 6.998 0 0 1 5.02-4.99H16.98zm0 2H7.02A5.003 5.003 0 0 0 3 7v10a5.003 5.003 0 0 0 4.02 4.99h9.96A5.003 5.003 0 0 0 21.99 17V7a5.003 5.003 0 0 0-5.01-4.99zm-4.98 3.2a5.79 5.79 0 1 1 0 11.58 5.79 5.79 0 0 1 0-11.58zm0 1.59a4.2 4.2 0 1 0 0 8.42 4.2 4.2 0 0 0 0-8.42zm6.07.73a1.44 1.44 0 1 1 0 2.88 1.44 1.44 0 0 1 0-2.88z"/></svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="icon-link" href="https://www.facebook.com/gianluca.biasatti" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Profilo Facebook">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 2H5a3 3 0 0 0-3 3v22a3 3 0 0 0 3 3h11V20h-3v-4h3v-3c0-3 2-4.67 4.67-4.67H25v4h-2c-1 0-1.33 0.33-1.33 1V16h3.33l-0.67 4H21v10h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"/></svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="icon-link" id="mailIcon" href="#" title="Copia Email" aria-label="Copia indirizzo email" onclick="handleEmailCopy(event)">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29 7H3c-1.1 0-2 0.9-2 2v14c0 1.1 0.9 2 2 2h26c1.1 0 2-0.9 2-2V9c0-1.1-0.9-2-2-2zm0 4.24-13 8.13-13-8.13V9l13 8 13-8v2.24z"/></svg>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
+    <!-- Header caricato dinamicamente -->
+    
     <main class="slideshow-container" role="region" aria-label="Slideshow fotografico">
         <div class="slide active">
             <img srcset="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1000,q_90/index-foto-001.jpg 600w, https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1200,q_80/index-foto-001.jpg 1200w, https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1920,q_85/index-foto-001.jpg 1920w" src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1200,q_80/index-foto-001.jpg" alt="Doona cinese in viale alberato - Foto principale" loading="lazy">
@@ -530,7 +232,7 @@
             <img srcset="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1000,q_90/index-foto-010.jpg 600w, https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1200,q_80/index-foto-010.jpg 1200w, https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1920,q_85/index-foto-010.jpg 1920w" src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1200,q_80/index-foto-010.jpg" alt="Albero con cielo stellato" loading="lazy">
         </div>
         <div class="slide">
-            <img srcset="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1000,q_90/index-foto-002.jpg 600w, https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1200,q_80/index-foto-002.jpg 1920w, https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1920,q_85/index-foto-002.jpg 1920w" src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1200,q_80/index-foto-002.jpg" alt="Donna con ombrello e pioggia binaco e nero" loading="lazy">
+            <img srcset="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1000,q_90/index-foto-002.jpg 600w, https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1200,q_80/index-foto-002.jpg 1200w, https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1920,q_85/index-foto-002.jpg 1920w" src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_1200,q_80/index-foto-002.jpg" alt="Donna con ombrello e pioggia binaco e nero" loading="lazy">
         </div>
 
         <div class="slide-controls">
@@ -551,207 +253,19 @@
         </div>
     </main>
 
-    <footer role="contentinfo">
-        <p>&copy; 2025 Gianluca Biasatti Travel Photographer. All rights reserved.</p>
-      <a href="https://marcobiasatti.carrd.co/" target="_blank" rel="noopener noreferrer" class="social-link" title="Marco Biasatti" aria-label="Marco Biasatti">
-            MB
-        </a>
-    </footer>
+    <!-- Footer caricato dinamicamente -->
 
+    <!-- Script comuni (OBBLIGATORI) -->
+    <script src="js/header.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/common.js"></script>
+    
+    <!-- Config slideshow -->
     <script>
-        /**
-         * CONFIGURAZIONE CENTRALIZZATA
-         */
-        const CONFIG = {
-            autoSlideInterval: 4000,
-            email: 'biasattig@gmail.com',
-            notificationDuration: 1500
-        };
-
-        /**
-         * SLIDESHOW OBJECT - Gestione centralizzata
-         */
-        const slideshow = {
-            currentIndex: 0,
-            autoTimer: null,
-            slides: [],
-            dots: [],
-
-            /**
-             * Inizializzazione
-             */
-            init() {
-                this.slides = document.querySelectorAll('.slide');
-                this.dots = document.querySelectorAll('.dot');
-                
-                if (this.slides.length === 0) {
-                    console.error('Nessuna slide trovata');
-                    return;
-                }
-
-                this.startAutoSlide();
-                this.bindEvents();
-            },
-
-            /**
-             * Binding eventi globali
-             */
-            bindEvents() {
-                document.addEventListener('keydown', (e) => this.handleKeyboard(e));
-                document.addEventListener('visibilitychange', () => this.handleVisibilityChange());
-            },
-
-            /**
-             * Gestione navigazione tastiera
-             */
-            handleKeyboard(e) {
-                if (e.key === 'ArrowLeft') this.prev();
-                if (e.key === 'ArrowRight') this.next();
-            },
-
-            /**
-             * Pausa/Resume in base a visibilità tab
-             */
-            handleVisibilityChange() {
-                if (document.hidden) {
-                    this.stopAutoSlide();
-                } else {
-                    this.startAutoSlide();
-                }
-            },
-
-            /**
-             * Visualizza slide specifica
-             */
-            show(index) {
-                index = this.validateIndex(index);
-                this.currentIndex = index;
-
-                this.slides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === index);
-                });
-
-                this.dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                    dot.setAttribute('aria-selected', i === index);
-                });
-            },
-
-            /**
-             * Slide successiva
-             */
-            next() {
-                this.show(this.currentIndex + 1);
-                this.resetAutoSlide();
-            },
-
-            /**
-             * Slide precedente
-             */
-            prev() {
-                this.show(this.currentIndex - 1);
-                this.resetAutoSlide();
-            },
-
-            /**
-             * Vai a slide specifica
-             */
-            goTo(index) {
-                this.show(index);
-                this.resetAutoSlide();
-            },
-
-            /**
-             * Auto-advance
-             */
-            autoAdvance() {
-                this.show(this.currentIndex + 1);
-            },
-
-            /**
-             * Valida indice
-             */
-            validateIndex(index) {
-                const total = this.slides.length;
-                if (index >= total) return 0;
-                if (index < 0) return total - 1;
-                return index;
-            },
-
-            /**
-             * Avvia autoplay
-             */
-            startAutoSlide() {
-                if (this.autoTimer) return;
-                this.autoTimer = setInterval(() => this.autoAdvance(), CONFIG.autoSlideInterval);
-            },
-
-            /**
-             * Ferma autoplay
-             */
-            stopAutoSlide() {
-                clearInterval(this.autoTimer);
-                this.autoTimer = null;
-            },
-
-            /**
-             * Reset autoplay
-             */
-            resetAutoSlide() {
-                this.stopAutoSlide();
-                this.startAutoSlide();
-            }
-        };
-
-        /**
-         * UTILITY - Gestione email
-         */
-        function handleEmailCopy(e) {
-            e.preventDefault();
-            
-            navigator.clipboard.writeText(CONFIG.email)
-                .then(() => showNotification())
-                .catch(() => emailCopyFallback());
-        }
-
-        /**
-         * Fallback per browser vecchi
-         */
-        function emailCopyFallback() {
-            const textarea = document.createElement('textarea');
-            textarea.value = CONFIG.email;
-            textarea.style.position = 'fixed';
-            textarea.style.left = '-999999px';
-            document.body.appendChild(textarea);
-            textarea.select();
-            
-            try {
-                document.execCommand('copy');
-                showNotification();
-            } catch (err) {
-                console.error('Errore copia email:', err);
-            } finally {
-                document.body.removeChild(textarea);
-            }
-        }
-
-        /**
-         * Mostra notifica
-         */
-        function showNotification() {
-            const notify = document.getElementById('copyNotify');
-            notify.classList.add('show');
-            setTimeout(() => notify.classList.remove('show'), CONFIG.notificationDuration);
-        }
-
-        /**
-         * INIT - Al caricamento documento
-         */
-        document.addEventListener('DOMContentLoaded', () => {
-            slideshow.init();
-        });
-
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
+        CONFIG.autoSlideInterval = 4000;
     </script>
+    
+    <!-- Script specifico per slideshow -->
+    <script src="js/slideshow.js"></script>
+</body>
+</html>

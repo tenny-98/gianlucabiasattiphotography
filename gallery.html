@@ -3,22 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gianluca Biasatti - Galleria Portfolio - Fotografie professionali">
+    <meta name="description" content="Gianluca Biasatti - Gallerie fotografiche professionali">
     <meta name="theme-color" content="#000">
-    <meta property="og:title" content="Gianluca Biasatti Travel Photographer - Portfolio">
-    <meta property="og:description" content="Galleria Portfolio - Migliori fotografie professionali">
+    <meta property="og:title" content="Gianluca Biasatti Travel Photographer">
+    <meta property="og:description" content="Esplora le gallerie fotografiche professionali">
     <meta property="og:type" content="website">
-    <title>Gianluca Biasatti Travel Photographer - Portfolio</title>
-    <meta name="version" content="2025-11-20">
+    <title>Gianluca Biasatti Travel Photographer</title>
+
+    <meta name="version" content="2025-11-16">
     
-    <!-- CSS COMUNE (shared) -->
-    <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- CSS SPECIFICO PER GALLERY (solo questa pagina) -->
     <style>
+        :root {
+            --color-primary: #FFD700;
+            --color-bg: #000;
+            --color-text-secondary: rgba(180, 180, 180, 0.7);
+            --color-border: rgba(255, 215, 0, 0.1);
+            --color-hover: #fffbe0;
+            --color-accent: #FF9430;
+            
+            --font-primary: Georgia, serif;
+            --font-size-base: 16px;
+            --line-height-base: 1.6;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 5rem;
+            
+            --header-height: 5.625rem;
+            --max-width: 1400px;
+            --border-radius: 0.25rem;
+            
+            --transition-smooth: 0.3s ease;
+            --transition-fast: 0.15s ease;
+            --transition-slow: 0.6s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: var(--font-size-base);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--color-bg);
+            color: var(--color-primary);
+            line-height: var(--line-height-base);
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0.75rem var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo {
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
+            font-weight: 400;
+            letter-spacing: 0.125rem;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            text-align: center;
+            width: 100%;
+            padding-bottom: var(--spacing-sm);
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -0.625rem;
+            left: 50%;
+            width: 100vw;
+            height: 1px;
+            background: var(--color-primary);
+            transform: translateX(-50%);
+        }
+
+        .logo .subtitle {
+            font-size: clamp(0.875rem, 4vw, 1.25rem);
+            font-weight: 300;
+            letter-spacing: 0.25rem;
+            text-transform: uppercase;
+            margin-top: 0.125rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(0.9375rem, 4vw, 1.75rem);
+            list-style: none;
+            padding: var(--spacing-sm) 0;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a,
+        .icon-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 0.6875rem;
+            font-weight: 300;
+            letter-spacing: 0.0625rem;
+            text-transform: uppercase;
+            transition: opacity var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .icon-link:hover {
+            opacity: 0.7;
+        }
+
+        .icon-link svg {
+            width: 1.125rem;
+            height: 1.125rem;
+            fill: var(--color-primary);
+            transition: fill var(--transition-smooth);
+        }
+
+        .icon-link:hover svg {
+            fill: var(--color-hover);
+        }
+
         /* ============================================
-           BREADCRUMB
+           NOTIFICHE
            ============================================ */
+        .copy-notify {
+            position: fixed;
+            top: calc(var(--header-height) + 1.875rem);
+            right: var(--spacing-lg);
+            background: #222;
+            color: var(--color-primary);
+            padding: var(--spacing-sm) 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.8125rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+            z-index: 2000;
+        }
+
+        .copy-notify.show {
+            opacity: 0.9;
+        }
+
         .breadcrumb {
             margin-top: var(--header-height);
             padding: var(--spacing-lg) var(--spacing-lg) 0;
@@ -45,14 +200,14 @@
             opacity: 0.5;
         }
 
-        /* ============================================
-           GALLERY CONTAINER
-           ============================================ */
         .gallery-container {
             padding: var(--spacing-lg) var(--spacing-lg) 7.5rem;
             max-width: 1600px;
             margin-left: auto;
             margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .page-title {
@@ -61,18 +216,16 @@
             font-weight: 300;
             letter-spacing: 0.25rem;
             text-transform: uppercase;
-            margin-bottom: var(--spacing-xl);
-            margin-top: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
             opacity: 0.8;
         }
 
-        /* ============================================
-           GALLERY GRID 3x4
-           ============================================ */
+        /* DESKTOP - 3 colonne */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2.5rem;
+            width: 100%;
         }
 
         .album-card {
@@ -130,18 +283,69 @@
             opacity: 0.6;
         }
 
-        /* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
-        @media (max-width: 1200px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-                max-width: 600px;
-            }
+        .album-card:nth-child(4) {
+            grid-column: 2;
         }
 
+        footer {
+            background: var(--color-bg);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            width: 100%;
+        }
+
+        footer p {
+            font-size: 0.6875rem;
+            letter-spacing: 0.0625rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 0 0.5rem;
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid #555;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.625rem;
+            color: #555;
+            text-align: center;
+            line-height: 2rem;
+            text-decoration: none;
+            opacity: 0.3;
+            transition: opacity var(--transition-smooth), border-color var(--transition-smooth);
+        }
+
+        .social-link:hover {
+            opacity: 0.6;
+            border-color: var(--color-primary);
+        }
+
+        /* ============================================
+           MEDIA QUERIES - RESPONSIVE DESIGN
+           ============================================ */
+
+        /* TABLET E TELEFONO - 1 colonna */
         @media (max-width: 768px) {
+            :root {
+                --header-height: 7.5rem;
+            }
+
+            nav {
+                padding: var(--spacing-md) var(--spacing-lg);
+            }
+
+            .nav-links {
+                gap: 1.5625rem;
+            }
+
+            .nav-links a {
+                font-size: 0.6875rem;
+            }
+
             .breadcrumb {
                 padding: var(--spacing-md) var(--spacing-lg) 0;
             }
@@ -153,11 +357,34 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-                max-width: 100%;
+            }
+
+            .album-card:nth-child(4) {
+                grid-column: 1;
+            }
+
+            .copy-notify {
+                top: calc(var(--header-height) + 0.9375rem);
+                right: 0.9375rem;
+                left: 0.9375rem;
+                width: auto;
+            }
+
+            footer {
+                padding: 2.5rem var(--spacing-md);
             }
         }
 
+        /* TELEFONO PICCOLO */
         @media (max-width: 480px) {
+            .nav-links {
+                gap: 0.75rem;
+            }
+
+            .nav-links a {
+                font-size: 0.5625rem;
+            }
+
             .breadcrumb {
                 padding: var(--spacing-sm) var(--spacing-sm) 0;
                 font-size: 0.6rem;
@@ -168,12 +395,26 @@
             }
 
             .page-title {
-                margin-bottom: var(--spacing-xl);
+                margin: var(--spacing-lg) 0;
                 font-size: 0.75rem;
             }
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
         @media print {
+            header,
+            footer,
             .breadcrumb {
                 display: none;
             }
@@ -181,36 +422,136 @@
     </style>
 </head>
 <body>
-    <!-- Header caricato dinamicamente -->
-    
-    <!-- Breadcrumb -->
+    <div id="copyNotify" class="copy-notify" role="status" aria-live="polite">Email copiata! biasattig@gmail.com</div>
+
+    <header role="banner">
+        <nav role="navigation" aria-label="Navigazione principale">
+            <div class="logo">
+                Gianluca Biasatti
+                <div class="subtitle">Travel Photographer</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li>
+                    <a class="icon-link" href="https://www.instagram.com/gianluca_biasatti_photography/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Profilo Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.98 2.01A6.996 6.996 0 0 1 21.99 7v10a6.996 6.996 0 0 1-5.01 4.99H7.02A6.998 6.998 0 0 1 2 17V7a6.998 6.998 0 0 1 5.02-4.99H16.98zm0 2H7.02A5.003 5.003 0 0 0 3 7v10a5.003 5.003 0 0 0 4.02 4.99h9.96A5.003 5.003 0 0 0 21.99 17V7a5.003 5.003 0 0 0-5.01-4.99zm-4.98 3.2a5.79 5.79 0 1 1 0 11.58 5.79 5.79 0 0 1 0-11.58zm0 1.59a4.2 4.2 0 1 0 0 8.42 4.2 4.2 0 0 0 0-8.42zm6.07.73a1.44 1.44 0 1 1 0 2.88 1.44 1.44 0 0 1 0-2.88z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="icon-link" href="https://www.facebook.com/gianluca.biasatti" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Profilo Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 2H5a3 3 0 0 0-3 3v22a3 3 0 0 0 3 3h11V20h-3v-4h3v-3c0-3 2-4.67 4.67-4.67H25v4h-2c-1 0-1.33 0.33-1.33 1V16h3.33l-0.67 4H21v10h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="icon-link" id="mailIcon" href="#" title="Copia Email" aria-label="Copia indirizzo email" onclick="handleEmailCopy(event)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29 7H3c-1.1 0-2 0.9-2 2v14c0 1.1 0.9 2 2 2h26c1.1 0 2-0.9 2-2V9c0-1.1-0.9-2-2-2zm0 4.24-13 8.13-13-8.13V9l13 8 13-8v2.24z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
     <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
         <span>/</span>
-        <a href="gallery.html">Gallery</a>
-        <span>/</span>
-        <span>Portfolio</span>
+        <span>Gallery</span>
     </div>
 
-    <!-- Gallery -->
     <main class="gallery-container">
-        <h1 class="page-title">Portfolio</h1>
+        <h1 class="page-title">Gallery</h1>
         <div class="gallery-grid">
-            <!-- Riga 1 -->
-            <a href="portfolio-album1.html" class="album-card" title="Accedi all'album Album 1">
+            <a href="viaggi.html" class="album-card" title="Accedi alla galleria Viaggi">
                 <div class="album-image-container">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Album 1" loading="lazy">
+                    <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/gallery-viaggi.jpg" alt="Galleria Viaggi">
                 </div>
-                <div class="album-title">In arrivo...</div>
+                <div class="album-title">Viaggi</div>
+            </a>
+
+            <a href="portfolio.html" class="album-card" title="Accedi alla galleria Portfolio">
+                <div class="album-image-container">
+                    <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/gallery-portfolio.jpg" alt="Galleria Portfolio">
+                </div>
+                <div class="album-title">Portfolio</div>
+            </a>
+
+            <a href="multivisioni.html" class="album-card" title="Accedi alla galleria Multivisioni">
+                <div class="album-image-container">
+                    <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/gallery-multivisioni.jpg" alt="Galleria Multivisioni">
+                </div>
+                <div class="album-title">Multivisioni</div>
+            </a>
+
+            <a href="varie.html" class="album-card" title="Accedi alla galleria Varie">
+                <div class="album-image-container">
+                    <img src="https://res.cloudinary.com/gianlucabiasatti67/image/upload/w_800,q_80/gallery-varie.jpg" alt="Galleria Varie">
+                </div>
+                <div class="album-title">Varie</div>
             </a>
         </div>
     </main>
 
-    <!-- Footer caricato dinamicamente -->
+    <footer role="contentinfo">
+        <p>&copy; 2025 Gianluca Biasatti Travel Photographer. All rights reserved.</p>
+        <a href="https://marcobiasatti.carrd.co/" target="_blank" rel="noopener noreferrer" class="social-link" title="Marco Biasatti" aria-label="Marco Biasatti">
+            MB
+        </a>
+    </footer>
 
-    <!-- Script comuni (OBBLIGATORI) -->
-    <script src="js/header.js"></script>
-    <script src="js/footer.js"></script>
-    <script src="js/common.js"></script>
+    <script>
+        /**
+         * CONFIGURAZIONE CENTRALIZZATA
+         */
+        const CONFIG = {
+            email: 'biasattig@gmail.it',
+            notificationDuration: 1500
+        };
+
+        /**
+         * UTILITY - Gestione email
+         */
+        function handleEmailCopy(e) {
+            e.preventDefault();
+            
+            navigator.clipboard.writeText(CONFIG.email)
+                .then(() => showNotification())
+                .catch(() => emailCopyFallback());
+        }
+
+        /**
+         * Fallback per browser vecchi
+         */
+        function emailCopyFallback() {
+            const textarea = document.createElement('textarea');
+            textarea.value = CONFIG.email;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-999999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showNotification();
+            } catch (err) {
+                console.error('Errore copia email:', err);
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        /**
+         * Mostra notifica
+         */
+        function showNotification() {
+            const notify = document.getElementById('copyNotify');
+            notify.classList.add('show');
+            setTimeout(() => notify.classList.remove('show'), CONFIG.notificationDuration);
+        }
+
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+    </script>
 </body>
 </html>

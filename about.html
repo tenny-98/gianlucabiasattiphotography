@@ -706,7 +706,7 @@
             try {
                 // Incrementa e ottieni il counter globale con Abacus
                 const response = await fetch(
-                    `${CONFIG.counterApiUrl}/hit/${CONFIG.counterNamespace}/index`
+                    `${CONFIG.counterApiUrl}/count/${CONFIG.counterNamespace}/index`
                 );
                 
                 if (!response.ok) throw new Error('Abacus API non disponibile');

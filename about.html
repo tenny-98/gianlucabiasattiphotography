@@ -698,24 +698,25 @@
         }
 
 /**
- * VISITOR COUNTER - CounterAPI
+ * VISITOR COUNTER - Hit Counter API
  */
 async function initVisitorCounter() {
     const countElement = document.getElementById('visitorCount');
     
     try {
         const response = await fetch(
-            'https://counterapi.dev/count/gianlucabiasatti.com/index'
+            'https://hitwebcounter.com/count.php?v=0&page=gianlucabiasatti'
         );
         
         if (!response.ok) {
             throw new Error(`HTTP Error: ${response.status}`);
         }
         
-        const data = await response.json();
+        const text = await response.text();
+        const count = parseInt(text.trim(), 10);
         
-        if (data && typeof data.value === 'number') {
-            countElement.textContent = data.value.toLocaleString('it-IT');
+        if (!isNaN(count)) {
+            countElement.textContent = count.toLocaleString('it-IT');
         } else {
             countElement.textContent = '---';
         }
@@ -725,7 +726,6 @@ async function initVisitorCounter() {
         countElement.textContent = '---';
     }
 }
-
 
         /**
          * INIT - Al caricamento documento

@@ -702,6 +702,7 @@
  */
 async function initVisitorCounter() {
     const countElement = document.getElementById('visitorCount');
+    let currentCount = parseInt(countElement.textContent) || 0;
     
     try {
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbx9lUS23OTi9V9Xw4BhPe9aDDtCHpzy1hD1w0Y0cm_tpiwYXGqtDxyLzAZK34pgTgjnlw/exec?action=get';
@@ -710,7 +711,7 @@ async function initVisitorCounter() {
         countElement.textContent = data.value.toLocaleString('it-IT');
     } catch (err) {
         console.error('Counter error:', err);
-        countElement.textContent = '---';
+        // Se fallisce, mantiene il numero vecchio (non lo cambia)
     }
 }
 

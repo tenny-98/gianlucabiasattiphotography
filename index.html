@@ -755,3 +755,17 @@
             e.preventDefault();
         });
     </script>
+
+    <!-- COUNTER GLOBALE - Incrementa silenziosamente -->
+<script>
+    async function incrementVisitorCounter() {
+        try {
+            await fetch('https://counterapi.dev/count/gianlucabiasatti.com/index');
+        } catch (err) {
+            console.warn('Counter non disponibile');
+        }
+    }
+
+    // Esegui al caricamento della pagina
+    document.addEventListener('DOMContentLoaded', incrementVisitorCounter);
+</script>

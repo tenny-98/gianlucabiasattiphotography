@@ -596,7 +596,7 @@
                 </div>
 
                 <div class="visits-counter">
-                    <p class="counter-value">Visitatori: <span id="visitorCount">...</span></p>
+                    <p class="counter-value">Visitatori: <span id="visitorCount">?</span></p>
                 </div>
             </section>
 
@@ -700,19 +700,22 @@
 /**
  * VISITOR COUNTER - Google Apps Script
  */
-async function initVisitorCounter() {
-    const countElement = document.getElementById('visitorCount');
-    let currentCount = parseInt(countElement.textContent) || 0;
-    
+let counterValue = 0; // Variabile globale
+
+async function loadCounterValue() {
     try {
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbx9lUS23OTi9V9Xw4BhPe9aDDtCHpzy1hD1w0Y0cm_tpiwYXGqtDxyLzAZK34pgTgjnlw/exec?action=get';
         const response = await fetch(scriptUrl);
         const data = await response.json();
-        countElement.textContent = data.value.toLocaleString('it-IT');
+        counterValue = data.value;
+        document.getElementById('visitorCount').textContent = counterValue.toLocaleString('it-IT');
     } catch (err) {
         console.error('Counter error:', err);
-        // Se fallisce, mantiene il numero vecchio (non lo cambia)
     }
+}
+
+function initVisitorCounter() {
+    loadCounterValue();
 }
 
         /**

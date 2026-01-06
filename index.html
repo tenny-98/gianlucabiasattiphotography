@@ -756,16 +756,16 @@
         });
     </script>
 
-<!-- COUNTER GLOBALE - Incrementa silenziosamente -->
+<!-- COUNTER GLOBALE - Google Apps Script -->
 <script>
     async function incrementVisitorCounter() {
         try {
-            await fetch('https://hitwebcounter.com/count.php?v=0&page=gianlucabiasatti');
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbx9lUS23OTi9V9Xw4BhPe9aDDtCHpzy1hD1w0Y0cm_tpiwYXGqtDxyLzAZK34pgTgjnlw/exec?action=increment';
+            await fetch(scriptUrl);
         } catch (err) {
-            console.warn('Counter non disponibile');
+            console.warn('Counter error:', err);
         }
     }
 
-    // Esegui al caricamento della pagina
     document.addEventListener('DOMContentLoaded', incrementVisitorCounter);
 </script>

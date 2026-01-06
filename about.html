@@ -706,7 +706,7 @@
             try {
                 // Incrementa e ottieni il counter globale con Abacus
                 const response = await fetch(
-                    `${CONFIG.counterApiUrl}/count/${CONFIG.counterNamespace}/index`
+                    'https://counterapi.dev/count/gianlucabiasatti.com/index'
                 );
                 
                 if (!response.ok) throw new Error('Abacus API non disponibile');
